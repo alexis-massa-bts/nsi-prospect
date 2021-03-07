@@ -10,26 +10,32 @@
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_account"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="329dp" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_name"
+        app:layout_constraintEnd_toStartOf="@+id/text_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_name"
+        app:srcCompat="@drawable/ic_account" />
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_eye"
-        tools:layout_editor_absoluteX="236dp"
-        tools:layout_editor_absoluteY="581dp" />
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_password"
+        app:layout_constraintStart_toEndOf="@+id/text_password"
+        app:layout_constraintTop_toTopOf="@+id/text_password"
+        app:srcCompat="@drawable/ic_eye" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_lock"
-        tools:layout_editor_absoluteX="310dp"
-        tools:layout_editor_absoluteY="533dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/text_password"
+        app:layout_constraintEnd_toStartOf="@+id/text_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_password"
+        app:srcCompat="@drawable/ic_lock" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -89,23 +95,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/text_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="481dp" />
+        android:text="@string/password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.672" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="401dp" />
+        android:text="@string/name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.565" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
