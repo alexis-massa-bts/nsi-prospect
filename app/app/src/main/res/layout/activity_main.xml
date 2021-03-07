@@ -12,24 +12,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_account"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="329dp" />
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="295dp" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_eye"
-        tools:layout_editor_absoluteX="236dp"
-        tools:layout_editor_absoluteY="581dp" />
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="199dp" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_lock"
-        tools:layout_editor_absoluteX="310dp"
-        tools:layout_editor_absoluteY="533dp" />
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="350dp" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -45,68 +45,9 @@
         android:id="@+id/imageView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="196dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_network" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="120dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:text="WORKING"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="103dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="51dp"
-        android:fontFamily="@font/nunito_light"
-        android:text="SOLUTION, INC"
-        android:textColor="#A5A5A5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="46dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="144dp"
-        android:text="NET"
-        android:textColor="#0079BD"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="481dp" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="401dp" />
-
+        app:srcCompat="@drawable/ic_network"
+        tools:layout_editor_absoluteX="184dp"
+        tools:layout_editor_absoluteY="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
