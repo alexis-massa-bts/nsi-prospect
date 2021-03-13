@@ -14,6 +14,12 @@ public class Prospect {
 
     /*=====================================Constructors===========================================*/
     public Prospect() {
+        this.name = "John";
+        this.lastname = "Doe";
+        this.phone = "0000000000";
+        this.mail = "john@doe";
+        this.notes = "Just john";
+        this.company = "John Doe";
     }
 
     public Prospect(String name, String lastname) {
@@ -29,6 +35,8 @@ public class Prospect {
         this.notes = notes;
         this.company = company;
     }
+
+
 
     /*=====================================Getters================================================*/
     public String getName() {

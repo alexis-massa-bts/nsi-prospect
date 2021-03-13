@@ -1,8 +1,11 @@
 package com.barseghyan_massa.nsi_prospect.db.helper;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -98,7 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             KEY_CREATED_AT + " DATETIME);";
 
     //Constructor
-    public DatabaseHelper(Context context){
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -125,5 +128,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //Create new tables
         onCreate(db);
+    }
+
+    /*====================================Methods=================================================*/
+    public boolean addOne(Prospect prospect) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_PROSPECT_NAME, prospect.getName());
+        cv.put(KEY_PROSPECT_LASTNAME, prospect.getLastname());
+
+        long insert = db.insert(TABLE_PROSPECT, null, cv);
+        if (insert == -1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
