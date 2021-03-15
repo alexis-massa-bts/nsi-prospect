@@ -2,10 +2,17 @@ package com.barseghyan_massa.nsi_prospect.db.helper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -131,6 +138,57 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /*====================================Methods=================================================*/
+    /*  FIND PROSPECT FILTER */
+    public List<Prospect> findProspect(@Nullable String filter[]) {
+        //Declaration of list to return
+        List<Prospect> prospects = new ArrayList<>();
+        //Query to execute
+        String queryString = "SELECT * FROM " + TABLE_PROSPECT
+                + " WHERE " + KEY_PROSPECT_NAME + " LIKE ? AND "
+                + KEY_PROSPECT_LASTNAME + " LIKE ? AND "
+                + KEY_PROSPECT_PHONE + " LIKE ? AND "
+                + KEY_PROSPECT_MAIL + " LIKE ? AND  "
+                + KEY_PROSPECT_NOTES + " LIKE ? ";
+        //get db
+        SQLiteDatabase db = this.getReadableDatabase();
+        //gest data in cursor
+        Cursor cursor = db.rawQuery(queryString, filter);
+        //if cursor has data
+        if (cursor.moveToFirst()) {
+            do {
+                prospects.add(new Prospect(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
+            } while (cursor.moveToFirst());
+        } else {
+            //If no result : nothing added (empty list)
+        }
+        db.close();
+        return prospects;
+    }
+
+    /*  FIND ONE PROSPECT BY ID */
+    public Prospect findOneProspect(@NonNull int id) {
+        //Declaration of list to return
+        List<Prospect> prospects = new ArrayList<>();
+        //Query to execute
+        String queryString = "SELECT * FROM " + TABLE_PROSPECT
+                + " WHERE " + KEY_PROSPECT_NAME + " = " + id;
+        //get db
+        SQLiteDatabase db = this.getReadableDatabase();
+        //gest data in cursor
+        Cursor cursor = db.rawQuery(queryString, null);
+        db.close();
+        //if cursor has data
+        if (cursor.moveToFirst()) {
+//            return Prospect
+            return new Prospect(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+        } else {
+            //If no result : nothing added (empty Prospect)
+            return new Prospect(null,null,null,null,null,null);
+        }
+
+    }
+
+    /*  INSERT PROSPECT   */
     public boolean addOne(Prospect prospect) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -139,10 +197,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(KEY_PROSPECT_LASTNAME, prospect.getLastname());
 
         long insert = db.insert(TABLE_PROSPECT, null, cv);
-        if (insert == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return insert != -1;
     }
 }

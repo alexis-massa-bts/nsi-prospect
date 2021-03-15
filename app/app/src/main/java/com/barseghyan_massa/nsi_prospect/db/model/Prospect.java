@@ -9,8 +9,8 @@ public class Prospect {
     String mail;
     String notes;
     String company;
-    ArrayList<Project> projects = new ArrayList<Project>();
-    ArrayList<Event> events = new ArrayList<Event>();
+    ArrayList<Project> projects = new ArrayList<>();
+    ArrayList<Event> events = new ArrayList<>();
 
     /*=====================================Constructors===========================================*/
     public Prospect() {
