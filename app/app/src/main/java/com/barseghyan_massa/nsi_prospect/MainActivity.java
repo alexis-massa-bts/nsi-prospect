@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
 //                goToHomepage();
             }
         });
-
     }
 
     public void goToHomepage() {
@@ -61,10 +60,9 @@ public class MainActivity extends AppCompatActivity {
         String login_str = login.getText().toString();
         String password_str = password.getText().toString();
 
-        if (login_str.equals("admin") && password_str.equals("admin")) {
-
+        /*if (login_str.equals("admin") && password_str.equals("admin")) {
+        }*/
             startActivity(homepage);
-        }
 
     }
 }

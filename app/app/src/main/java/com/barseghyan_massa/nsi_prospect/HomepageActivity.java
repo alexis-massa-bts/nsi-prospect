@@ -3,6 +3,9 @@ package com.barseghyan_massa.nsi_prospect;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
@@ -53,6 +56,14 @@ public class HomepageActivity extends AppCompatActivity {
             }
         });
 
+        //Table
+        TableLayout tl = (TableLayout)findViewById(R.id.tableLayout);
+        TableRow row = new TableRow(this);
+        TextView tv = new TextView(this);
+        tv.setText("This is text");
+
+        tl.addView(row);
+        row.addView(tv);
     }
 
 }
