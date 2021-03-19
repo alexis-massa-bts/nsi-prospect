@@ -1,5 +1,6 @@
 package com.barseghyan_massa.nsi_prospect.db.model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class Prospect {
@@ -9,6 +10,7 @@ public class Prospect {
     String mail;
     String notes;
     int siret;
+    Date createdAat;
     ArrayList<Project> projects = new ArrayList<>();
     ArrayList<Event> events = new ArrayList<>();
 
@@ -20,11 +22,13 @@ public class Prospect {
         this.mail = "default";
         this.notes = "default";
         this.siret = -1;
+        this.createdAat = new Date(System.currentTimeMillis());
     }
 
     public Prospect(String name, String lastname) {
         this.name = name;
         this.lastname = lastname;
+        this.createdAat = new Date(System.currentTimeMillis());
     }
 
     public Prospect(String name, String lastname, String phone, String mail, String notes, int siret) {
@@ -34,9 +38,8 @@ public class Prospect {
         this.mail = mail;
         this.notes = notes;
         this.siret = siret;
+        this.createdAat = new Date(System.currentTimeMillis());
     }
-
-
 
     /*=====================================Getters================================================*/
     public String getName() {
@@ -71,6 +74,10 @@ public class Prospect {
         return events;
     }
 
+    public String getCreatedAat() {
+        return String.valueOf(createdAat);
+    }
+
     /*=====================================Setters================================================*/
     public void setName(String name) {
         this.name = name;
@@ -102,6 +109,10 @@ public class Prospect {
 
     public void setEvents(ArrayList<Event> events) {
         this.events = events;
+    }
+
+    public void setCreatedAat(Date createdAat) {
+        this.createdAat = createdAat;
     }
 
     /*=====================================Methods================================================*/

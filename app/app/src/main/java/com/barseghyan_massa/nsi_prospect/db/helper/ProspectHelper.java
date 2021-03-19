@@ -6,12 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.barseghyan_massa.nsi_prospect.MyApplication;
 import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +96,7 @@ public class ProspectHelper {
         cv.put(KEY_PROSPECT_PHONE, prospect.getPhone());
         cv.put(KEY_PROSPECT_MAIL, prospect.getMail());
         cv.put(KEY_PROSPECT_NOTES, prospect.getNotes());
+        cv.put(KEY_CREATED_AT, prospect.getCreatedAat());
 
         long insert = db.insert(TABLE_PROSPECT, null, cv);
         return insert != -1;
