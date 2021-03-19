@@ -34,21 +34,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Test création d'un Prospect pour test connexion BDD
-                Prospect prospect;
-                try {
-                    prospect = new Prospect("john", "doe");
-                    Toast.makeText(MainActivity.this, prospect.toString(), Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    prospect = new Prospect();
-                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                }
-
-                ProspectHelper prospectHelper = new ProspectHelper();
-                boolean success = prospectHelper.addOne(prospect);
-                Toast.makeText(MainActivity.this, "Success" + success, Toast.LENGTH_SHORT).show();
-//                Toast.makeText(MainActivity.this, dbHelper.findProspect(null).get(0).getName(), Toast.LENGTH_SHORT).show();
-                prospectHelper.find();
-//                goToHomepage();
+//                Prospect prospect;
+//                try {
+//                    prospect = new Prospect("john", "doe");
+//                    Toast.makeText(MainActivity.this, prospect.toString(), Toast.LENGTH_SHORT).show();
+//                } catch (Exception e) {
+//                    prospect = new Prospect();
+//                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+//                }
+//
+//                ProspectHelper prospectHelper = new ProspectHelper();
+//                boolean success = prospectHelper.addOne(prospect);
+//                Toast.makeText(MainActivity.this, "Success" + success, Toast.LENGTH_SHORT).show();
+////                Toast.makeText(MainActivity.this, dbHelper.findProspect(null).get(0).getName(), Toast.LENGTH_SHORT).show();
+//                prospectHelper.find();
+               goToHomepage();
             }
         });
     }

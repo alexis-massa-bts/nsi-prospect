@@ -58,12 +58,15 @@ public class HomepageActivity extends AppCompatActivity {
 
         //Table
         TableLayout tl = (TableLayout)findViewById(R.id.tableLayout);
-        TableRow row = new TableRow(this);
-        TextView tv = new TextView(this);
-        tv.setText("This is text");
 
-        tl.addView(row);
-        row.addView(tv);
+        for (int i = 0; i < 10; i++) {
+            TableRow row = new TableRow(this);
+            TextView tv = new TextView(this);
+            tv.setText("This is text" + i);
+
+            tl.addView(row);
+            row.addView(tv);
+        }
     }
 
 }
