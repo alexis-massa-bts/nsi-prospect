@@ -8,18 +8,18 @@ public class Prospect {
     String phone;
     String mail;
     String notes;
-    String company;
+    int siret;
     ArrayList<Project> projects = new ArrayList<>();
     ArrayList<Event> events = new ArrayList<>();
 
     /*=====================================Constructors===========================================*/
     public Prospect() {
-        this.name = "John";
-        this.lastname = "Doe";
-        this.phone = "0000000000";
-        this.mail = "john@doe";
-        this.notes = "Just john";
-        this.company = "John Doe";
+        this.name = "default";
+        this.lastname = "default";
+        this.phone = "default";
+        this.mail = "default";
+        this.notes = "default";
+        this.siret = -1;
     }
 
     public Prospect(String name, String lastname) {
@@ -27,13 +27,13 @@ public class Prospect {
         this.lastname = lastname;
     }
 
-    public Prospect(String name, String lastname, String phone, String mail, String notes, String company) {
+    public Prospect(String name, String lastname, String phone, String mail, String notes, int siret) {
         this.name = name;
         this.lastname = lastname;
         this.phone = phone;
         this.mail = mail;
         this.notes = notes;
-        this.company = company;
+        this.siret = siret;
     }
 
 
@@ -59,8 +59,8 @@ public class Prospect {
         return notes;
     }
 
-    public String getCompany() {
-        return company;
+    public int getSiret() {
+        return siret;
     }
 
     public ArrayList<Project> getProjects() {
@@ -92,8 +92,8 @@ public class Prospect {
         this.notes = notes;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setSiret(int siret) {
+        this.siret = siret;
     }
 
     public void setProjects(ArrayList<Project> projects) {
@@ -114,7 +114,7 @@ public class Prospect {
                 ", phone='" + phone + '\'' +
                 ", mail='" + mail + '\'' +
                 ", notes='" + notes + '\'' +
-                ", company='" + company + '\'' +
+                ", company='" + siret + '\'' +
                 ", projects=" + projects +
                 ", events=" + events +
                 '}';

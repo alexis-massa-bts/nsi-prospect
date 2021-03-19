@@ -6,6 +6,8 @@ public class Company {
 
     /*=====================================Constructors===========================================*/
     public Company() {
+        this.name = "default";
+        this.siret = -1;
     }
 
     public Company(String name) {

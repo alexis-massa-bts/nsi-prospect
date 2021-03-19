@@ -5,10 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.barseghyan_massa.nsi_prospect.MainActivity;
+import com.barseghyan_massa.nsi_prospect.MyApplication;
 import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 
 import java.util.ArrayList;
@@ -42,25 +45,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_USER_PHONE = "phone";
     private static final String KEY_USER_MAIL = "mail";
 
-
-    //Company
+    //Company column names
     private static final String KEY_COMPANY_NAME = "name";
     private static final String KEY_COMPANY_SIRET = "siret";
 
-    //Event
+    //Event column names
     private static final String KEY_EVENT_NAME = "name";
     private static final String KEY_EVENT_LOCATION = "lastname";
     private static final String KEY_EVENT_STARTDATE = "startDate";
     private static final String KEY_EVENT_ENDDATE = "endDate";
 
-    //Prospects
+    //Prospects column names
     private static final String KEY_PROSPECT_NAME = "name";
     private static final String KEY_PROSPECT_LASTNAME = "lastname";
     private static final String KEY_PROSPECT_PHONE = "phone";
     private static final String KEY_PROSPECT_MAIL = "mail";
     private static final String KEY_PROSPECT_NOTES = "notes";
 
-    //Project
+    //Project column names
     private static final String KEY_PROJECT_WORDING = "wording";
     private static final String KEY_PROJECT_NOTES = "notes";
 
@@ -107,9 +109,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             KEY_PROJECT_NOTES + " TEXT, " +
             KEY_CREATED_AT + " DATETIME);";
 
-    //Constructor
-    public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    /*==================================Constructor===============================================*/
+    private static DatabaseHelper instance = new DatabaseHelper();
+
+    private DatabaseHelper() {
+        super(MyApplication.getAppContext(), DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public static DatabaseHelper getInstance() {
+        return instance;
     }
 
     @Override
@@ -136,67 +144,129 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Create new tables
         onCreate(db);
     }
+    /*====================================Getters=================================================*/
 
-    /*====================================Methods=================================================*/
-    /*  FIND PROSPECT FILTER */
-    public List<Prospect> findProspect(@Nullable String filter[]) {
-        //Declaration of list to return
-        List<Prospect> prospects = new ArrayList<>();
-        //Query to execute
-        String queryString = "SELECT * FROM " + TABLE_PROSPECT
-                + " WHERE " + KEY_PROSPECT_NAME + " LIKE ? AND "
-                + KEY_PROSPECT_LASTNAME + " LIKE ? AND "
-                + KEY_PROSPECT_PHONE + " LIKE ? AND "
-                + KEY_PROSPECT_MAIL + " LIKE ? AND  "
-                + KEY_PROSPECT_NOTES + " LIKE ? ";
-        //get db
-        SQLiteDatabase db = this.getReadableDatabase();
-        //gest data in cursor
-        Cursor cursor = db.rawQuery(queryString, filter);
-        //if cursor has data
-        if (cursor.moveToFirst()) {
-            do {
-                prospects.add(new Prospect(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
-            } while (cursor.moveToFirst());
-        } else {
-            //If no result : nothing added (empty list)
-        }
-        db.close();
-        return prospects;
+    public static int getDbVersion() {
+        return DATABASE_VERSION;
     }
 
-    /*  FIND ONE PROSPECT BY ID */
-    public Prospect findOneProspect(@NonNull int id) {
-        //Declaration of list to return
-        List<Prospect> prospects = new ArrayList<>();
-        //Query to execute
-        String queryString = "SELECT * FROM " + TABLE_PROSPECT
-                + " WHERE " + KEY_PROSPECT_NAME + " = " + id;
-        //get db
-        SQLiteDatabase db = this.getReadableDatabase();
-        //gest data in cursor
-        Cursor cursor = db.rawQuery(queryString, null);
-        db.close();
-        //if cursor has data
-        if (cursor.moveToFirst()) {
-//            return Prospect
-            return new Prospect(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
-        } else {
-            //If no result : nothing added (empty Prospect)
-            return new Prospect(null,null,null,null,null,null);
-        }
-
+    public static String getDabName() {
+        return DATABASE_NAME;
     }
 
-    /*  INSERT PROSPECT   */
-    public boolean addOne(Prospect prospect) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public static String getTableUser() {
+        return TABLE_USER;
+    }
 
-        ContentValues cv = new ContentValues();
-        cv.put(KEY_PROSPECT_NAME, prospect.getName());
-        cv.put(KEY_PROSPECT_LASTNAME, prospect.getLastname());
+    public static String getTableCompany() {
+        return TABLE_COMPANY;
+    }
 
-        long insert = db.insert(TABLE_PROSPECT, null, cv);
-        return insert != -1;
+    public static String getTableEvent() {
+        return TABLE_EVENT;
+    }
+
+    public static String getTableProspect() {
+        return TABLE_PROSPECT;
+    }
+
+    public static String getTableProject() {
+        return TABLE_PROJECT;
+    }
+
+    public static String getKeyId() {
+        return KEY_ID;
+    }
+
+    public static String getKeyCreatedAt() {
+        return KEY_CREATED_AT;
+    }
+
+    public static String getKeyUserName() {
+        return KEY_USER_NAME;
+    }
+
+    public static String getKeyUserLastname() {
+        return KEY_USER_LASTNAME;
+    }
+
+    public static String getKeyUserPhone() {
+        return KEY_USER_PHONE;
+    }
+
+    public static String getKeyUserMail() {
+        return KEY_USER_MAIL;
+    }
+
+    public static String getKeyCompanyName() {
+        return KEY_COMPANY_NAME;
+    }
+
+    public static String getKeyCompanySiret() {
+        return KEY_COMPANY_SIRET;
+    }
+
+    public static String getKeyEventName() {
+        return KEY_EVENT_NAME;
+    }
+
+    public static String getKeyEventLocation() {
+        return KEY_EVENT_LOCATION;
+    }
+
+    public static String getKeyEventStartdate() {
+        return KEY_EVENT_STARTDATE;
+    }
+
+    public static String getKeyEventEnddate() {
+        return KEY_EVENT_ENDDATE;
+    }
+
+    public static String getKeyProspectName() {
+        return KEY_PROSPECT_NAME;
+    }
+
+    public static String getKeyProspectLastname() {
+        return KEY_PROSPECT_LASTNAME;
+    }
+
+    public static String getKeyProspectPhone() {
+        return KEY_PROSPECT_PHONE;
+    }
+
+    public static String getKeyProspectMail() {
+        return KEY_PROSPECT_MAIL;
+    }
+
+    public static String getKeyProspectNotes() {
+        return KEY_PROSPECT_NOTES;
+    }
+
+    public static String getKeyProjectWording() {
+        return KEY_PROJECT_WORDING;
+    }
+
+    public static String getKeyProjectNotes() {
+        return KEY_PROJECT_NOTES;
+    }
+
+    public static String getCreateTableUser() {
+        return CREATE_TABLE_USER;
+    }
+
+    public static String getCreateTableCompany() {
+        return CREATE_TABLE_COMPANY;
+    }
+
+    public static String getCreateTableEvent() {
+        return CREATE_TABLE_EVENT;
+    }
+
+    public static String getCreateTableProspect() {
+        return CREATE_TABLE_PROSPECT;
+    }
+
+    public static String getCreateTableProject() {
+        return CREATE_TABLE_PROJECT;
     }
 }
