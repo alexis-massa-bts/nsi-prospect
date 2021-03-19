@@ -55,6 +55,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToHomepage() {
         Intent homepage = new Intent(MainActivity.this, HomepageActivity.class);
-        startActivity(homepage);
+        EditText login = findViewById(R.id.text_name);
+        EditText password = findViewById(R.id.text_password);
+        String login_str = login.getText().toString();
+        String password_str = password.getText().toString();
+
+        if (login_str.equals("admin") && password_str.equals("admin")) {
+
+            startActivity(homepage);
+        }
+
     }
 }
