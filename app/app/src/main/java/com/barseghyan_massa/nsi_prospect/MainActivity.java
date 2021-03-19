@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 boolean success = prospectHelper.addOne(prospect);
                 Toast.makeText(MainActivity.this, "Success" + success, Toast.LENGTH_SHORT).show();
 //                Toast.makeText(MainActivity.this, dbHelper.findProspect(null).get(0).getName(), Toast.LENGTH_SHORT).show();
-                prospectHelper.findProspect(new String[]{String.valueOf(1), "john", "%"});
+                prospectHelper.find();
 //                goToHomepage();
             }
         });
