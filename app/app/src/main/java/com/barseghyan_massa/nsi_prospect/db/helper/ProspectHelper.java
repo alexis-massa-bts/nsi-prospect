@@ -6,11 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
-
 import com.barseghyan_massa.nsi_prospect.MyApplication;
 import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +37,7 @@ public class ProspectHelper {
         String queryString = "SELECT * FROM " + TABLE_PROSPECT;
         //get db
         SQLiteDatabase db = ProspectHelper.db.getReadableDatabase();
-        //gest data in cursor
+        //get data in cursor
         try (Cursor cursor = db.rawQuery(queryString, null)) {
             //if cursor has data
             if (cursor.moveToFirst()) {
@@ -72,7 +70,7 @@ public class ProspectHelper {
             db.close();
             //if cursor has data
             if (cursor.moveToFirst()) {
-                //            return Prospect
+                //return Prospect
                 return new Prospect(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getInt(5));
             } else {
                 //If no result : message
@@ -101,6 +99,4 @@ public class ProspectHelper {
         long insert = db.insert(TABLE_PROSPECT, null, cv);
         return insert != -1;
     }
-
-
 }

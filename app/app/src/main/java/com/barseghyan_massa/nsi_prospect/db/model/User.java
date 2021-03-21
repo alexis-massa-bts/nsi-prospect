@@ -1,26 +1,39 @@
 package com.barseghyan_massa.nsi_prospect.db.model;
 
+import java.sql.Date;
+
 public class User {
     String name;
     String lastname;
     String password;
     String phone;
     String mail;
+    Date createdAt;
 
     /*=====================================Constructors===========================================*/
     public User() {
+        this.name = "default";
+        this.lastname = "default";
+        this.password = "default";
+        this.phone = "0000000000";
+        this.mail = "default@default.default";
+        this.createdAt = new Date(System.currentTimeMillis());
     }
 
     public User(String name, String lastname, String password) {
         this.name = name;
         this.lastname = lastname;
+        this.password = password;
+        this.createdAt = new Date(System.currentTimeMillis());
     }
 
-    public User(String name, String lastname, String phone, String mail) {
+    public User(String name, String lastname, String password, String phone, String mail) {
         this.name = name;
         this.lastname = lastname;
+        this.password = password;
         this.phone = phone;
         this.mail = mail;
+        this.createdAt = new Date(System.currentTimeMillis());
     }
 
     /*=====================================Getters================================================*/
@@ -32,16 +45,20 @@ public class User {
         return lastname;
     }
 
-
     public String getPassword() {
         return password;
     }
+
     public String getPhone() {
         return phone;
     }
 
     public String getMail() {
         return mail;
+    }
+
+    public String getCreatedAt() {
+        return String.valueOf(createdAt);
     }
 
     /*=====================================Setters================================================*/
@@ -65,6 +82,10 @@ public class User {
         this.mail = mail;
     }
 
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
     /*=====================================Methods================================================*/
 
     @Override
@@ -75,6 +96,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
                 ", mail='" + mail + '\'' +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }

@@ -1,21 +1,9 @@
 package com.barseghyan_massa.nsi_prospect.db.helper;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.barseghyan_massa.nsi_prospect.MainActivity;
 import com.barseghyan_massa.nsi_prospect.MyApplication;
-import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -42,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //User column names
     private static final String KEY_USER_NAME = "name";
     private static final String KEY_USER_LASTNAME = "lastname";
+    private static final String KEY_USER_PASSWORD = "password";
     private static final String KEY_USER_PHONE = "phone";
     private static final String KEY_USER_MAIL = "mail";
 
@@ -72,6 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             KEY_ID + " INTEGER PRIMARY KEY, " +
             KEY_USER_NAME + " TEXT, " +
             KEY_USER_LASTNAME + " TEXT, " +
+            KEY_USER_PASSWORD + " TEXT, " +
             KEY_USER_MAIL + " TEXT, " +
             KEY_USER_PHONE + " TEXT, " +
             KEY_CREATED_AT + " DATETIME);";
@@ -146,11 +136,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     /*====================================Getters=================================================*/
 
-    public static int getDbVersion() {
+    public static String getLOG() {
+        return LOG;
+    }
+
+    public static int getDatabaseVersion() {
         return DATABASE_VERSION;
     }
 
-    public static String getDabName() {
+    public static String getDbName() {
         return DATABASE_NAME;
     }
 
@@ -188,6 +182,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static String getKeyUserLastname() {
         return KEY_USER_LASTNAME;
+    }
+
+    public static String getKeyUserPassword() {
+        return KEY_USER_PASSWORD;
     }
 
     public static String getKeyUserPhone() {
