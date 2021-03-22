@@ -2,18 +2,13 @@ package com.barseghyan_massa.nsi_prospect;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.barseghyan_massa.nsi_prospect.db.helper.DatabaseHelper;
-import com.barseghyan_massa.nsi_prospect.db.helper.ProspectHelper;
 import com.barseghyan_massa.nsi_prospect.db.helper.UserHelper;
-import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         //Declarations
         login_btn = findViewById(R.id.login_btn);
         et_name = findViewById(R.id.text_name);
-        et_password = findViewById(R.id.text_password);
+        et_password = findViewById(R.id.text_lastname);
 
         //Button listeners
         login_btn.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         UserHelper userH = new UserHelper();
 
         EditText login = findViewById(R.id.text_name);
-        EditText password = findViewById(R.id.text_password);
+        EditText password = findViewById(R.id.text_lastname);
         String login_str = login.getText().toString();
         String password_str = password.getText().toString();
 

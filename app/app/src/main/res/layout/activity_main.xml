@@ -82,11 +82,11 @@
         android:id="@+id/imageView7"
         android:layout_width="44dp"
         android:layout_height="45dp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_password"
-        app:layout_constraintEnd_toStartOf="@+id/text_password"
+        app:layout_constraintBottom_toBottomOf="@+id/text_lastname"
+        app:layout_constraintEnd_toStartOf="@+id/text_lastname"
         app:layout_constraintHorizontal_bias="0.894"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_password"
+        app:layout_constraintTop_toTopOf="@+id/text_lastname"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_lock" />
 
@@ -103,7 +103,7 @@
         app:srcCompat="@drawable/ic_account" />
 
     <EditText
-        android:id="@+id/text_password"
+        android:id="@+id/text_lastname"
         android:layout_width="281dp"
         android:layout_height="47dp"
         android:ems="10"
