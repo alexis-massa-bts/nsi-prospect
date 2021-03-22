@@ -91,22 +91,25 @@ public class UserHelper {
         //Query to execute
         String queryString = "SELECT * FROM " + TABLE_USER + " WHERE " + KEY_USER_LOGIN + " = ? AND " + KEY_USER_PASSWORD + " = ?;";
         //get db
-        SQLiteDatabase dbLite = com.barseghyan_massa.nsi_prospect.db.helper.UserHelper.db.getReadableDatabase();
+        SQLiteDatabase db = com.barseghyan_massa.nsi_prospect.db.helper.UserHelper.db.getReadableDatabase();
         //get data in cursor
-        try (Cursor cursor = dbLite.rawQuery(queryString, new String[]{ login, password })) {
-            dbLite.close();
+        try (Cursor cursor = db.rawQuery(queryString, new String[]{ login, password })) {
+
             //if cursor has data
             if (cursor.moveToFirst()) {
                 //return User
+                db.close();
                 return true;
             } else {
                 //If no result : message
                 Toast.makeText(MyApplication.getAppContext(), "Login/Password incorrect !", Toast.LENGTH_SHORT).show();
+                db.close();
                 return false;
             }
         } catch (Exception e) {
             Toast.makeText(MyApplication.getAppContext(), "Query error", Toast.LENGTH_SHORT).show();
             Log.d(USER_LOG, "Error connection: " + e);
+            db.close();
             return false;
         }
     }

@@ -63,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             KEY_ID + " INTEGER PRIMARY KEY, " +
             KEY_USER_NAME + " TEXT, " +
             KEY_USER_LASTNAME + " TEXT, " +
-            KEY_USER_LOGIN + "TEXT," +
+            KEY_USER_LOGIN + " TEXT," +
             KEY_USER_PASSWORD + " TEXT, " +
             KEY_USER_MAIL + " TEXT, " +
             KEY_USER_PHONE + " TEXT, " +
@@ -123,6 +123,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_PROJECT);
 
         //TODO : Hard-coded imports
+        db.execSQL( "INSERT INTO user(" + KEY_ID + "," + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES(1, 'admin', 'admin')" );
     }
 
     @Override
