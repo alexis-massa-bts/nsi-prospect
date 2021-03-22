@@ -3,6 +3,7 @@ package com.barseghyan_massa.nsi_prospect.db.helper;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.barseghyan_massa.nsi_prospect.MainActivity;
 import com.barseghyan_massa.nsi_prospect.MyApplication;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -30,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //User column names
     private static final String KEY_USER_NAME = "name";
     private static final String KEY_USER_LASTNAME = "lastname";
+    private static final String KEY_USER_LOGIN = "login";
     private static final String KEY_USER_PASSWORD = "password";
     private static final String KEY_USER_PHONE = "phone";
     private static final String KEY_USER_MAIL = "mail";
@@ -61,6 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             KEY_ID + " INTEGER PRIMARY KEY, " +
             KEY_USER_NAME + " TEXT, " +
             KEY_USER_LASTNAME + " TEXT, " +
+            KEY_USER_LOGIN + "TEXT," +
             KEY_USER_PASSWORD + " TEXT, " +
             KEY_USER_MAIL + " TEXT, " +
             KEY_USER_PHONE + " TEXT, " +
@@ -182,6 +185,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static String getKeyUserLastname() {
         return KEY_USER_LASTNAME;
+    }
+
+    public static String getKeyUserLogin() {
+        return KEY_USER_LOGIN;
     }
 
     public static String getKeyUserPassword() {

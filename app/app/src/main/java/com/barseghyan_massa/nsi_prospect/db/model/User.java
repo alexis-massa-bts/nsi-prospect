@@ -5,6 +5,7 @@ import java.sql.Date;
 public class User {
     String name;
     String lastname;
+    String login;
     String password;
     String phone;
     String mail;
@@ -14,6 +15,7 @@ public class User {
     public User() {
         this.name = "default";
         this.lastname = "default";
+        this.login= "default";
         this.password = "default";
         this.phone = "0000000000";
         this.mail = "default@default.default";
@@ -45,6 +47,10 @@ public class User {
         return lastname;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -68,6 +74,10 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public void setPassword(String password) {

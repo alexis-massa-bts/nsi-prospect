@@ -2,6 +2,7 @@ package com.barseghyan_massa.nsi_prospect;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.barseghyan_massa.nsi_prospect.db.helper.DatabaseHelper;
 import com.barseghyan_massa.nsi_prospect.db.helper.ProspectHelper;
+import com.barseghyan_massa.nsi_prospect.db.helper.UserHelper;
 import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         //Declarations
@@ -48,21 +51,27 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(MainActivity.this, "Success" + success, Toast.LENGTH_SHORT).show();
 ////                Toast.makeText(MainActivity.this, dbHelper.findProspect(null).get(0).getName(), Toast.LENGTH_SHORT).show();
 //                prospectHelper.find();
-               goToHomepage();
+               connection();
+//                Toast.makeText(MyApplication.getAppContext(), MyApplication.getAppContext().toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void goToHomepage() {
-        Intent homepage = new Intent(MainActivity.this, HomepageActivity.class);
+    public void connection() {
+        UserHelper userH = new UserHelper();
+
         EditText login = findViewById(R.id.text_name);
         EditText password = findViewById(R.id.text_password);
         String login_str = login.getText().toString();
         String password_str = password.getText().toString();
 
-        /*if (login_str.equals("admin") && password_str.equals("admin")) {
-        }*/
-            startActivity(homepage);
+        if (userH.connection(login_str, password_str)) {
+            goToHomepage();
+        }
+    }
 
+    public void goToHomepage() {
+        Intent homepage = new Intent(MainActivity.this, HomepageActivity.class);
+        startActivity(homepage);
     }
 }

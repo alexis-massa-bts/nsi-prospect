@@ -10,6 +10,7 @@ import com.barseghyan_massa.nsi_prospect.MyApplication;
 import com.barseghyan_massa.nsi_prospect.db.model.Company;
 import com.barseghyan_massa.nsi_prospect.db.model.User;
 
+import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class UserHelper {
 
     private static final DatabaseHelper db = DatabaseHelper.getInstance();
 
-    private static final String USER_LOG = "CompanyHelper";
+    private static final String USER_LOG = "UserHelper";
 
     private static final String TABLE_USER = DatabaseHelper.getTableUser();
 
@@ -26,13 +27,14 @@ public class UserHelper {
     private static final String KEY_CREATED_AT = DatabaseHelper.getKeyCreatedAt();
     private static final String KEY_USER_NAME = DatabaseHelper.getKeyUserName();
     private static final String KEY_USER_LASTNAME = DatabaseHelper.getKeyUserLastname();
+    private static final String KEY_USER_LOGIN = DatabaseHelper.getKeyUserLogin();
     private static final String KEY_USER_PASSWORD = DatabaseHelper.getKeyUserPassword();
     private static final String KEY_USER_PHONE = DatabaseHelper.getKeyUserPhone();
     private static final String KEY_USER_MAIL = DatabaseHelper.getKeyUserMail();
 
 
 
-    /*  FIND ALL COMPAGNIES */
+    /*  FIND ALL USERS */
     public List<User> find() {
         //Declaration of list to return
         List<User> users = new ArrayList<>();
@@ -59,21 +61,19 @@ public class UserHelper {
         return users;
     }
 
-    /*  FIND ONE COMPANY BY ID */
-    public Company findOne(int id) {
-        //Declaration of list to return
-        List<Company> prospects = new ArrayList<>();
+    /*  FIND ONE USER BY ID */
+    public User findOne(int id) {
         //Query to execute
         String queryString = "SELECT * FROM " + TABLE_USER + " WHERE " + KEY_ID + " = " + id;
         //get db
         SQLiteDatabase db = com.barseghyan_massa.nsi_prospect.db.helper.UserHelper.db.getReadableDatabase();
-        //gest data in cursor
+        //get data in cursor
         try (Cursor cursor = db.rawQuery(queryString, null)) {
             db.close();
             //if cursor has data
             if (cursor.moveToFirst()) {
-                //return Company
-                return new Company(cursor.getString(0), cursor.getInt(1));
+                //return User
+                return new User(cursor.getString(0), cursor.getString(1), cursor.getString(2));
             } else {
                 //If no result : message
                 Toast.makeText(MyApplication.getAppContext(), "No user found", Toast.LENGTH_SHORT).show();
@@ -86,7 +86,32 @@ public class UserHelper {
         }
     }
 
-    /*  INSERT COMPANY   */
+    /* FIND USER BY LOGIN */
+    public boolean connection(String login, String password) {
+        //Query to execute
+        String queryString = "SELECT * FROM " + TABLE_USER + " WHERE " + KEY_USER_LOGIN + " = ? AND " + KEY_USER_PASSWORD + " = ?;";
+        //get db
+        SQLiteDatabase dbLite = com.barseghyan_massa.nsi_prospect.db.helper.UserHelper.db.getReadableDatabase();
+        //get data in cursor
+        try (Cursor cursor = dbLite.rawQuery(queryString, new String[]{ login, password })) {
+            dbLite.close();
+            //if cursor has data
+            if (cursor.moveToFirst()) {
+                //return User
+                return true;
+            } else {
+                //If no result : message
+                Toast.makeText(MyApplication.getAppContext(), "Login/Password incorrect !", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        } catch (Exception e) {
+            Toast.makeText(MyApplication.getAppContext(), "Query error", Toast.LENGTH_SHORT).show();
+            Log.d(USER_LOG, "Error connection: " + e);
+            return false;
+        }
+    }
+
+    /*  INSERT USER   */
     public boolean addOne(User user) {
         SQLiteDatabase db = com.barseghyan_massa.nsi_prospect.db.helper.UserHelper.db.getWritableDatabase();
 
