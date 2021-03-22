@@ -3,7 +3,6 @@ package com.barseghyan_massa.nsi_prospect.db.helper;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.barseghyan_massa.nsi_prospect.MainActivity;
 import com.barseghyan_massa.nsi_prospect.MyApplication;
 
 public class DatabaseHelper extends SQLiteOpenHelper {

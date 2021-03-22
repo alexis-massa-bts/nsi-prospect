@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.barseghyan_massa.nsi_prospect.db.helper.UserHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     //References
     Button login_btn;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         //Declarations
         login_btn = findViewById(R.id.login_btn);
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToHomepage() {
-        Intent homepage = new Intent(MainActivity.this, HomepageActivity.class);
+        Intent homepage = new Intent(LoginActivity.this, HomepageActivity.class);
         startActivity(homepage);
     }
 }
