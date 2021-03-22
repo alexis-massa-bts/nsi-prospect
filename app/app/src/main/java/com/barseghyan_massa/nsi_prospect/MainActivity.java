@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Test création d'un Prospect pour test connexion BDD
+////                Test création d'un Prospect pour test connexion BDD
 //                Prospect prospect;
 //                try {
 //                    prospect = new Prospect("john", "doe");

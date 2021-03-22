@@ -41,7 +41,7 @@ public class CompanyHelper {
             if (cursor.moveToFirst()) {
                 do {
                     compagnies.add(new Company(cursor.getString(0), cursor.getInt(1)));
-                } while (cursor.moveToFirst());
+                } while (cursor.moveToNext());
             } else {
                 //If no result : message
                 Toast.makeText(MyApplication.getAppContext(), "No companies found", Toast.LENGTH_SHORT).show();

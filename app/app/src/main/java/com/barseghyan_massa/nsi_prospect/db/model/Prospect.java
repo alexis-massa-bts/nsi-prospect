@@ -9,10 +9,7 @@ public class Prospect {
     String phone;
     String mail;
     String notes;
-    int siret;
     Date createdAat;
-    ArrayList<Project> projects = new ArrayList<>();
-    ArrayList<Event> events = new ArrayList<>();
 
     /*=====================================Constructors===========================================*/
     public Prospect() {
@@ -21,7 +18,6 @@ public class Prospect {
         this.phone = "default";
         this.mail = "default";
         this.notes = "default";
-        this.siret = -1;
         this.createdAat = new Date(System.currentTimeMillis());
     }
 
@@ -37,7 +33,6 @@ public class Prospect {
         this.phone = phone;
         this.mail = mail;
         this.notes = notes;
-        this.siret = siret;
         this.createdAat = new Date(System.currentTimeMillis());
     }
 
@@ -60,18 +55,6 @@ public class Prospect {
 
     public String getNotes() {
         return notes;
-    }
-
-    public int getSiret() {
-        return siret;
-    }
-
-    public ArrayList<Project> getProjects() {
-        return projects;
-    }
-
-    public ArrayList<Event> getEvents() {
-        return events;
     }
 
     public String getCreatedAat() {
@@ -99,18 +82,6 @@ public class Prospect {
         this.notes = notes;
     }
 
-    public void setSiret(int siret) {
-        this.siret = siret;
-    }
-
-    public void setProjects(ArrayList<Project> projects) {
-        this.projects = projects;
-    }
-
-    public void setEvents(ArrayList<Event> events) {
-        this.events = events;
-    }
-
     public void setCreatedAat(Date createdAat) {
         this.createdAat = createdAat;
     }
@@ -125,19 +96,6 @@ public class Prospect {
                 ", phone='" + phone + '\'' +
                 ", mail='" + mail + '\'' +
                 ", notes='" + notes + '\'' +
-                ", company='" + siret + '\'' +
-                ", projects=" + projects +
-                ", events=" + events +
                 '}';
-    }
-
-    //Add project
-    public void addProject(Project p) {
-        this.projects.add(p);
-    }
-
-    //Add event
-    public void addEvent(Event e) {
-        this.events.add(e);
     }
 }

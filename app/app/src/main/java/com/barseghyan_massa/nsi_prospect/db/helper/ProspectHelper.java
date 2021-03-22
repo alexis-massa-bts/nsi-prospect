@@ -43,7 +43,7 @@ public class ProspectHelper {
             if (cursor.moveToFirst()) {
                 do {
                     prospects.add(new Prospect(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getInt(5)));
-                } while (cursor.moveToFirst());
+                } while (cursor.moveToNext());
             } else {
                 //If no result : message
                 Toast.makeText(MyApplication.getAppContext(), "Aucun prospect trouvé", Toast.LENGTH_SHORT).show();
