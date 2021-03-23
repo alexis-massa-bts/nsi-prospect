@@ -5,4 +5,7 @@
     <string name="lastname">Lastname</string>
     <string name="add_prospect">Add prospect</string>
     <string name="siret">Siret</string>
+    <string name="phone">Phone</string>
+    <string name="mail">Mail</string>
+    <string name="notes">Notes</string>
 </resources>

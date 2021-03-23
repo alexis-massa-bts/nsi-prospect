@@ -30,7 +30,7 @@ public class ProspectHelper {
 
 
     /*  FIND ALL PROSPECTS */
-    public List<Prospect> find() {
+    public static List<Prospect> find() {
         //Declaration of list to return
         List<Prospect> prospects = new ArrayList<>();
         //Query to execute
@@ -42,7 +42,7 @@ public class ProspectHelper {
             //if cursor has data
             if (cursor.moveToFirst()) {
                 do {
-                    prospects.add(new Prospect(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getInt(5)));
+                    prospects.add(new Prospect(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
                 } while (cursor.moveToNext());
             } else {
                 //If no result : message
@@ -71,7 +71,7 @@ public class ProspectHelper {
             //if cursor has data
             if (cursor.moveToFirst()) {
                 //return Prospect
-                return new Prospect(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getInt(5));
+                return new Prospect(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
             } else {
                 //If no result : message
                 Toast.makeText(MyApplication.getAppContext(), "Aucun prospect trouvé", Toast.LENGTH_SHORT).show();
@@ -85,7 +85,7 @@ public class ProspectHelper {
     }
 
     /*  INSERT PROSPECT   */
-    public boolean addOne(Prospect prospect) {
+    public static boolean addOne(Prospect prospect) {
         SQLiteDatabase db = ProspectHelper.db.getWritableDatabase();
 
         ContentValues cv = new ContentValues();

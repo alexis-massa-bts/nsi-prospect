@@ -59,7 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Create table statements
     //User table
     private static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + "(" +
-            KEY_ID + " INTEGER PRIMARY KEY, " +
+            KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             KEY_USER_NAME + " TEXT, " +
             KEY_USER_LASTNAME + " TEXT, " +
             KEY_USER_LOGIN + " TEXT," +
@@ -70,14 +70,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Company table
     private static final String CREATE_TABLE_COMPANY = "CREATE TABLE " + TABLE_COMPANY + "(" +
-            KEY_ID + " INTEGER PRIMARY KEY, " +
+            KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             KEY_COMPANY_NAME + " TEXT, " +
             KEY_COMPANY_SIRET + " INTEGER, " +
             KEY_CREATED_AT + " DATETIME);";
 
     //Project table
     private static final String CREATE_TABLE_EVENT = "CREATE TABLE " + TABLE_EVENT + "(" +
-            KEY_ID + " INTEGER PRIMARY KEY, " +
+            KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             KEY_EVENT_NAME + " TEXT, " +
             KEY_EVENT_LOCATION + " TEXT, " +
             KEY_EVENT_STARTDATE + " DATETIME, " +
@@ -86,7 +86,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Event table
     private static final String CREATE_TABLE_PROSPECT = "CREATE TABLE " + TABLE_PROSPECT + "(" +
-            KEY_ID + " INTEGER PRIMARY KEY, " +
+            KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             KEY_PROSPECT_NAME + " TEXT, " +
             KEY_PROSPECT_LASTNAME + " TEXT, " +
             KEY_PROSPECT_PHONE + " TEXT, " +
@@ -96,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Project table
     private static final String CREATE_TABLE_PROJECT = "CREATE TABLE " + TABLE_PROJECT + "(" +
-            KEY_ID + " INTEGER PRIMARY KEY, " +
+            KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             KEY_PROJECT_WORDING + " TEXT, " +
             KEY_PROJECT_NOTES + " TEXT, " +
             KEY_CREATED_AT + " DATETIME);";
@@ -122,7 +122,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_PROJECT);
 
         //TODO : Hard-coded imports
-        db.execSQL( "INSERT INTO user(" + KEY_ID + "," + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES(1, 'admin', 'admin')" );
+        db.execSQL("INSERT INTO user(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('admin', 'admin')");
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.barseghyan_massa.nsi_prospect.db.model;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 public class Prospect {
     String name;
@@ -27,7 +26,7 @@ public class Prospect {
         this.createdAat = new Date(System.currentTimeMillis());
     }
 
-    public Prospect(String name, String lastname, String phone, String mail, String notes, int siret) {
+    public Prospect(String name, String lastname, String phone, String mail, String notes) {
         this.name = name;
         this.lastname = lastname;
         this.phone = phone;

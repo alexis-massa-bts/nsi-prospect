@@ -13,8 +13,8 @@ import com.barseghyan_massa.nsi_prospect.db.helper.UserHelper;
 public class LoginActivity extends AppCompatActivity {
 
     //References
-    Button login_btn;
-    EditText et_name, et_password;
+    Button btn_login;
+    EditText et_login, et_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +23,12 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //Declarations
-        login_btn = findViewById(R.id.login_btn);
-        et_name = findViewById(R.id.text_name);
+        btn_login = findViewById(R.id.login_btn);
+        et_login = findViewById(R.id.text_name);
         et_password = findViewById(R.id.text_lastname);
 
         //Button listeners
-        login_btn.setOnClickListener(new View.OnClickListener() {
+        btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 ////                Test création d'un Prospect pour test connexion BDD
@@ -55,10 +55,8 @@ public class LoginActivity extends AppCompatActivity {
     public void connection() {
         UserHelper userH = new UserHelper();
 
-        EditText login = findViewById(R.id.text_name);
-        EditText password = findViewById(R.id.text_lastname);
-        String login_str = login.getText().toString();
-        String password_str = password.getText().toString();
+        String login_str = et_login.getText().toString();
+        String password_str = et_password.getText().toString();
 
         if (userH.connection(login_str, password_str)) {
             goToHomepage();
