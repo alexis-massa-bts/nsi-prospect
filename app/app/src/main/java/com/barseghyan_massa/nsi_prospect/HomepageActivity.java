@@ -3,7 +3,9 @@ package com.barseghyan_massa.nsi_prospect;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -16,6 +18,8 @@ import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 import com.google.android.material.snackbar.Snackbar;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
+import java.text.DateFormatSymbols;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomepageActivity extends AppCompatActivity {
@@ -23,6 +27,7 @@ public class HomepageActivity extends AppCompatActivity {
     //References
     ImageView btn_logout, btn_search, btn_addProspect, btn_settings, btn_option, btn_sync;
     MaterialSpinner spinner_event, spinner_company;
+    ListView listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,7 @@ public class HomepageActivity extends AppCompatActivity {
         btn_settings = findViewById(R.id.settings);
         btn_search = findViewById(R.id.search);
         btn_sync = findViewById(R.id.sync);
-
+        listview = findViewById(R.id.listview);
         spinner_event = (MaterialSpinner) findViewById(R.id.event);
         spinner_company = (MaterialSpinner) findViewById(R.id.company);
 
@@ -70,19 +75,12 @@ public class HomepageActivity extends AppCompatActivity {
             }
         });
 
-        //Table
-        TableLayout tl = (TableLayout) findViewById(R.id.tableLayout);
+        //Listview
+        List<String> allProspects = getProspects();
+        ArrayAdapter<String> prospectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,allProspects);
+        listview.setAdapter(prospectAdapter);
 
-        List<Prospect> allProspects = ProspectHelper.find();
 
-        allProspects.forEach(p -> {
-            TableRow row = new TableRow(this);
-            TextView tv = new TextView(this);
-            tv.setText(String.format("%s %s", p.getName(), p.getLastname()));
-
-            tl.addView(row);
-            row.addView(tv);
-        });
 
 
         btn_addProspect.setOnClickListener(new View.OnClickListener() {
@@ -93,5 +91,23 @@ public class HomepageActivity extends AppCompatActivity {
             }
         });
 
+        btn_sync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+    }
+
+    public List<String> getProspects() {
+        List<Prospect> listProspects = ProspectHelper.find();
+        List<String> allProspects = new ArrayList<>();
+
+        listProspects.forEach(p -> {
+            allProspects.add(String.format("%s %s", p.getName(), p.getLastname()));
+        });
+
+        return allProspects;
     }
 }

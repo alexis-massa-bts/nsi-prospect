@@ -120,16 +120,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_mdi_light_logout" />
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="337dp"
-        android:layout_height="395dp"
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="336dp"
+        android:layout_height="399dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/company">
-
-    </TableLayout>
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
