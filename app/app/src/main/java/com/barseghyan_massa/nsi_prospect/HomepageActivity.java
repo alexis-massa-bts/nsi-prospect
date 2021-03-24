@@ -3,6 +3,7 @@ package com.barseghyan_massa.nsi_prospect;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,7 +23,7 @@ import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomepageActivity extends AppCompatActivity {
+public class HomepageActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     //References
     ImageView btn_logout, btn_search, btn_addProspect, btn_settings, btn_option, btn_sync;
@@ -75,14 +76,15 @@ public class HomepageActivity extends AppCompatActivity {
             }
         });
 
-        //Listview
+        //ListView
         List<String> allProspects = getProspects();
         ArrayAdapter<String> prospectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,allProspects);
         listview.setAdapter(prospectAdapter);
 
+        //ListEvents
+        listview.setOnItemClickListener(this);
 
-
-
+        //Buttons
         btn_addProspect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,5 +111,12 @@ public class HomepageActivity extends AppCompatActivity {
         });
 
         return allProspects;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        long prospect = parent.getItemIdAtPosition(position);
+        int id_prospect = (int) prospect+1;
+        Toast.makeText(getApplicationContext(), "ID: " + id_prospect, Toast.LENGTH_SHORT).show();
     }
 }
