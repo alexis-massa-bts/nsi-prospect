@@ -7,9 +7,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +16,6 @@ import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 import com.google.android.material.snackbar.Snackbar;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
-import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,8 +74,7 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
 
         //ListView
         List<String> allProspects = getProspects();
-        ArrayAdapter<String> prospectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,allProspects);
-        listview.setAdapter(prospectAdapter);
+        updateList(allProspects);
 
         //ListEvents
         listview.setOnItemClickListener(this);
@@ -96,7 +91,10 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         btn_sync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -111,6 +109,11 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         });
 
         return allProspects;
+    }
+
+    public void updateList(List<String> allProspects) {
+        ArrayAdapter<String> prospectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,allProspects);
+        listview.setAdapter(prospectAdapter);
     }
 
     @Override
