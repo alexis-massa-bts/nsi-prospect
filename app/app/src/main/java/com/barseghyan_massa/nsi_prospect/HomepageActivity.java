@@ -140,7 +140,6 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
 
     public void updateList(List<String> allProspects) {
         prospectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allProspects);
-
         listview.setAdapter(prospectAdapter);
     }
 
@@ -153,6 +152,7 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         Intent intent = new Intent(this, UpdateProspectActivity.class);
         intent.putExtra("idProspect", id_prospect);
         startActivity(intent);
+        finish();
 
     }
 

@@ -27,7 +27,10 @@ public class CompanyHelper {
     private static final String KEY_COMPANY_NAME = DatabaseHelper.getKeyCompanyName();
     private static final String KEY_COMPANY_SIRET = DatabaseHelper.getKeyCompanySiret();
 
-    /*  FIND ALL COMPAGNIES */
+    /**
+     * FIND ALL COMPAGNIES
+     * @return List of Company
+     */
     public static List<Company> find() {
         //Declaration of list to return
         List<Company> compagnies = new ArrayList<>();
@@ -54,12 +57,16 @@ public class CompanyHelper {
         return compagnies;
     }
 
-    /*  FIND ONE COMPANY BY ID */
-    public static Company findOne(int siret) {
+    /**
+     * FIND ONE COMPANY BY ID
+     * @param id : Company to find id
+     * @return Company
+     */
+    public static Company findOne(int id) {
         //Declaration of list to return
         List<Company> prospects = new ArrayList<>();
         //Query to execute
-        String queryString = "SELECT * FROM " + TABLE_COMPANY + " WHERE " + KEY_COMPANY_SIRET + " = " + siret;
+        String queryString = "SELECT * FROM " + TABLE_COMPANY + " WHERE " + KEY_ID + " = " + id;
         //get db
         SQLiteDatabase db = CompanyHelper.db.getReadableDatabase();
         //gest data in cursor
@@ -81,7 +88,11 @@ public class CompanyHelper {
         }
     }
 
-    /*  INSERT COMPANY   */
+    /**
+     * INSERT COMPANY
+     * @param company : Company to insert
+     * @return boolean
+     */
     public boolean addOne(Company company) {
         SQLiteDatabase db = CompanyHelper.db.getWritableDatabase();
 
