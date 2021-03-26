@@ -2,11 +2,13 @@ package com.barseghyan_massa.nsi_prospect.db.helper;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.barseghyan_massa.nsi_prospect.MyApplication;
+import com.barseghyan_massa.nsi_prospect.db.model.Company;
 import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 
 import java.util.ArrayList;
@@ -15,9 +17,12 @@ import java.util.List;
 public class ProspectHelper {
     private static final DatabaseHelper db = DatabaseHelper.getInstance();
 
+//    private static final CompanyHelper companyHelper = new CompanyHelper();
+
     private static final String PROSPECT_LOG = "ProspectHelper";
 
     private static final String TABLE_PROSPECT = DatabaseHelper.getTableProspect();
+    private static final String TABLE_COMPANY = DatabaseHelper.getTableCompany();
 
     //Prospects column names
     private static final String KEY_ID = DatabaseHelper.getKeyId();
@@ -27,6 +32,7 @@ public class ProspectHelper {
     private static final String KEY_PROSPECT_PHONE = DatabaseHelper.getKeyProspectPhone();
     private static final String KEY_PROSPECT_MAIL = DatabaseHelper.getKeyProspectMail();
     private static final String KEY_PROSPECT_NOTES = DatabaseHelper.getKeyProspectNotes();
+    private static final String KEY_PROSPECT_COMPANY = DatabaseHelper.getKeyProspectCompany();
 
 
     /*  FIND ALL PROSPECTS */
@@ -34,16 +40,18 @@ public class ProspectHelper {
         //Declaration of list to return
         List<Prospect> prospects = new ArrayList<>();
         //Query to execute
-        String queryString = "SELECT * FROM " + TABLE_PROSPECT;
+        String queryStringP = "SELECT * FROM " + TABLE_PROSPECT;
         //get db
         SQLiteDatabase db = ProspectHelper.db.getReadableDatabase();
         //get data in cursor
-        try (Cursor cursor = db.rawQuery(queryString, null)) {
+        try (Cursor cursorP = db.rawQuery(queryStringP, null)) {
             //if cursor has data
-            if (cursor.moveToFirst()) {
+            if (cursorP.moveToFirst()) {
                 do {
-                    prospects.add(new Prospect(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
-                } while (cursor.moveToNext());
+                    Prospect nProspect = new Prospect(cursorP.getString(1), cursorP.getString(2), cursorP.getString(3), cursorP.getString(4), cursorP.getString(5));
+                    nProspect.setCompany(CompanyHelper.findOne(cursorP.getInt(6)));
+                    prospects.add(nProspect);
+                } while (cursorP.moveToNext());
             } else {
                 //If no result : message
                 Toast.makeText(MyApplication.getAppContext(), "Aucun prospect trouvé", Toast.LENGTH_SHORT).show();

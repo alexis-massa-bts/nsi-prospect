@@ -26,7 +26,6 @@ public class CompanyHelper {
     private static final String KEY_COMPANY_NAME = DatabaseHelper.getKeyCompanyName();
     private static final String KEY_COMPANY_SIRET = DatabaseHelper.getKeyCompanySiret();
 
-
     /*  FIND ALL COMPAGNIES */
     public List<Company> find() {
         //Declaration of list to return
@@ -55,7 +54,7 @@ public class CompanyHelper {
     }
 
     /*  FIND ONE COMPANY BY ID */
-    public Company findOne(int id) {
+    public static Company findOne(int id) {
         //Declaration of list to return
         List<Company> prospects = new ArrayList<>();
         //Query to execute
@@ -64,11 +63,10 @@ public class CompanyHelper {
         SQLiteDatabase db = CompanyHelper.db.getReadableDatabase();
         //gest data in cursor
         try (Cursor cursor = db.rawQuery(queryString, null)) {
-            db.close();
             //if cursor has data
             if (cursor.moveToFirst()) {
                 //return Company
-                return new Company(cursor.getString(0), cursor.getInt(1));
+                return new Company(cursor.getString(1), cursor.getInt(2));
             } else {
                 //If no result : message
                 Toast.makeText(MyApplication.getAppContext(), "No company found", Toast.LENGTH_SHORT).show();
@@ -77,6 +75,7 @@ public class CompanyHelper {
         } catch (Exception e) {
             Toast.makeText(MyApplication.getAppContext(), "Query error", Toast.LENGTH_SHORT).show();
             Log.d(COMPANY_LOG, "Error findOne: " + e);
+            db.close();
             return null;
         }
     }

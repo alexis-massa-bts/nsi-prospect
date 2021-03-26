@@ -17,11 +17,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "NSI_DB";
 
     //Table names
-    private static final String TABLE_USER = "user";
-    private static final String TABLE_COMPANY = "company";
-    private static final String TABLE_EVENT = "event";
-    private static final String TABLE_PROSPECT = "prospect";
-    private static final String TABLE_PROJECT = "project";
+    private static final String TABLE_USER = "USER";
+    private static final String TABLE_COMPANY = "COMPANY";
+    private static final String TABLE_EVENT = "EVENT";
+    private static final String TABLE_PROSPECT = "PROSPECT";
+    private static final String TABLE_PROJECT = "PROJECT";
 
     //Common column names
     private static final String KEY_ID = "id";
@@ -51,6 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_PROSPECT_PHONE = "phone";
     private static final String KEY_PROSPECT_MAIL = "mail";
     private static final String KEY_PROSPECT_NOTES = "notes";
+    private static final String KEY_PROSPECT_COMPANY = "company";
 
     //Project column names
     private static final String KEY_PROJECT_WORDING = "wording";
@@ -72,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_COMPANY = "CREATE TABLE " + TABLE_COMPANY + "(" +
             KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             KEY_COMPANY_NAME + " TEXT, " +
-            KEY_COMPANY_SIRET + " INTEGER, " +
+            KEY_COMPANY_SIRET + " INTEGER UNIQUE, " +
             KEY_CREATED_AT + " DATETIME);";
 
     //Project table
@@ -92,7 +93,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             KEY_PROSPECT_PHONE + " TEXT, " +
             KEY_PROSPECT_MAIL + " TEXT, " +
             KEY_PROSPECT_NOTES + " TEXT, " +
-            KEY_CREATED_AT + " DATETIME);";
+            KEY_PROSPECT_COMPANY + " INTEGER, " +
+            KEY_CREATED_AT + " DATETIME, " +
+            " FOREIGN KEY (" + KEY_PROSPECT_COMPANY + ") REFERENCES " + TABLE_COMPANY + "(" + KEY_ID + "));";
 
     //Project table
     private static final String CREATE_TABLE_PROJECT = "CREATE TABLE " + TABLE_PROJECT + "(" +
@@ -122,7 +125,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_PROJECT);
 
         //TODO : Hard-coded imports
-        db.execSQL("INSERT INTO user(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('admin', 'admin')");
+        //Users
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('admin', 'admin')");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('achot', 'achot')");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('alexis', 'alexis')");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('', '')");
+
+        //Companies
+        db.execSQL("INSERT INTO " + TABLE_COMPANY + "( " + KEY_COMPANY_NAME + "," + KEY_COMPANY_SIRET + ") VALUES ('AG2R', 77562563500013);");
+        db.execSQL("INSERT INTO " + TABLE_COMPANY + "( " + KEY_COMPANY_NAME + "," + KEY_COMPANY_SIRET + ") VALUES ('Renault', 78012998703591);");
+        db.execSQL("INSERT INTO " + TABLE_COMPANY + "( " + KEY_COMPANY_NAME + "," + KEY_COMPANY_SIRET + ") VALUES ('DUREX', 45820757800014);");
+
+        //Prospects
+        db.execSQL("INSERT INTO " + TABLE_PROSPECT + "(" + KEY_PROSPECT_NAME
+                + "," + KEY_PROSPECT_LASTNAME
+                + "," + KEY_PROSPECT_PHONE
+                + "," + KEY_PROSPECT_MAIL
+                + "," + KEY_PROSPECT_NOTES
+                + "," + KEY_PROSPECT_COMPANY + ")VALUES('doe', 'john', '0102030405', 'john.doe@gmail.com', 'just le best', 3)");
     }
 
     @Override
@@ -245,6 +265,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static String getKeyProspectNotes() {
         return KEY_PROSPECT_NOTES;
+    }
+
+    public static String getKeyProspectCompany() {
+        return KEY_PROSPECT_COMPANY;
     }
 
     public static String getKeyProjectWording() {

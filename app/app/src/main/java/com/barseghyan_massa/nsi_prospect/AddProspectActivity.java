@@ -18,7 +18,7 @@ import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 public class AddProspectActivity extends AppCompatActivity {
 
     //references
-    ImageView btn_logout, btn_globeSearch, btn_add_newProspect, btn_settings, btn_option, btn_sync;
+    ImageView btn_logout, btn_globeSearch, btn_add_newProspect, btn_settings, btn_option, btn_sync, btn_back;
     Button btn_addProspect;
     EditText number_siret, text_name, text_lastname, text_phone, text_mail, text_notes;
 
@@ -35,6 +35,7 @@ public class AddProspectActivity extends AppCompatActivity {
         btn_globeSearch = findViewById(R.id.search);
         btn_sync = findViewById(R.id.sync);
         btn_add_newProspect = findViewById(R.id.btn_add_newProspect);
+        btn_back = findViewById(R.id.back);
 
         number_siret = findViewById(R.id.number_siret);
         text_name = findViewById(R.id.text_name);
@@ -76,6 +77,8 @@ public class AddProspectActivity extends AppCompatActivity {
         });
 
         btn_add_newProspect.setOnClickListener(view -> goToAddProspect());
+
+        btn_back.setOnClickListener(v -> finish());
 
     }
 

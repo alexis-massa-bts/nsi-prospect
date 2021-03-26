@@ -1,5 +1,6 @@
 package com.barseghyan_massa.nsi_prospect;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -46,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 //                Toast.makeText(MainActivity.this, "Success" + success, Toast.LENGTH_SHORT).show();
 ////                Toast.makeText(MainActivity.this, dbHelper.findProspect(null).get(0).getName(), Toast.LENGTH_SHORT).show();
 //                prospectHelper.find();
-               connection();
+                connection();
 //                Toast.makeText(MyApplication.getAppContext(), MyApplication.getAppContext().toString(), Toast.LENGTH_SHORT).show();
             }
         });

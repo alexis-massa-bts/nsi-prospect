@@ -78,15 +78,6 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
 
         //ListEvents
         listview.setOnItemClickListener(this);
-        listview.setOnTouchListener((v, event) -> {
-            searchView.clearFocus();
-            searchView.setVisibility(View.INVISIBLE);
-            btn_search.setVisibility(View.VISIBLE);
-            btn_addProspect.setVisibility(View.VISIBLE);
-            btn_settings.setVisibility(View.VISIBLE);
-            nav_bar.setVisibility(View.VISIBLE);
-            return true;
-        });
 
         //Buttons
         btn_logout.setOnClickListener(v -> {
@@ -133,17 +124,6 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
                 return true;
             }
         });
-
-        entire_view.setOnTouchListener((v, event) -> {
-            searchView.clearFocus();
-            searchView.setVisibility(View.INVISIBLE);
-            btn_search.setVisibility(View.VISIBLE);
-            btn_addProspect.setVisibility(View.VISIBLE);
-            btn_settings.setVisibility(View.VISIBLE);
-            nav_bar.setVisibility(View.VISIBLE);
-            return true;
-        });
-
     }
 
     public List<String> getProspects() {
@@ -151,7 +131,7 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         List<String> allProspects = new ArrayList<>();
 
         listProspects.forEach(p -> {
-            allProspects.add(String.format("%s %s", p.getName(), p.getLastname()));
+            allProspects.add(String.format("%s %s %s", p.getName(), p.getLastname(), p.getCompany().getName()));
         });
 
         return allProspects;
@@ -159,6 +139,7 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
 
     public void updateList(List<String> allProspects) {
         prospectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,allProspects);
+
         listview.setAdapter(prospectAdapter);
     }
 
@@ -171,6 +152,7 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         Intent intent = new Intent(this, UpdateProspectActivity.class);
         intent.putExtra("idProspect",id_prospect);
         startActivity(intent);
+
     }
 
 }

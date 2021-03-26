@@ -3,17 +3,18 @@ package com.barseghyan_massa.nsi_prospect.db.model;
 import java.sql.Date;
 
 public class Prospect {
-    String name;
     String lastname;
+    String name;
     String phone;
     String mail;
     String notes;
+    Company company;
     Date createdAat;
 
     /*=====================================Constructors===========================================*/
     public Prospect() {
-        this.name = "default";
         this.lastname = "default";
+        this.name = "default";
         this.phone = "default";
         this.mail = "default";
         this.notes = "default";
@@ -21,17 +22,27 @@ public class Prospect {
     }
 
     public Prospect(String name, String lastname) {
-        this.name = name;
         this.lastname = lastname;
+        this.name = name;
         this.createdAat = new Date(System.currentTimeMillis());
     }
 
     public Prospect(String name, String lastname, String phone, String mail, String notes) {
-        this.name = name;
         this.lastname = lastname;
+        this.name = name;
         this.phone = phone;
         this.mail = mail;
         this.notes = notes;
+        this.createdAat = new Date(System.currentTimeMillis());
+    }
+
+    public Prospect(String name, String lastname, String phone, String mail, String notes, Company company) {
+        this.lastname = lastname;
+        this.name = name;
+        this.phone = phone;
+        this.mail = mail;
+        this.notes = notes;
+        this.company = company;
         this.createdAat = new Date(System.currentTimeMillis());
     }
 
@@ -54,6 +65,10 @@ public class Prospect {
 
     public String getNotes() {
         return notes;
+    }
+
+    public Company getCompany() {
+        return company;
     }
 
     public String getCreatedAat() {
@@ -81,6 +96,10 @@ public class Prospect {
         this.notes = notes;
     }
 
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     public void setCreatedAat(Date createdAat) {
         this.createdAat = createdAat;
     }
@@ -95,6 +114,8 @@ public class Prospect {
                 ", phone='" + phone + '\'' +
                 ", mail='" + mail + '\'' +
                 ", notes='" + notes + '\'' +
+                ", company=" + company +
+                ", createdAat=" + createdAat +
                 '}';
     }
 }
