@@ -43,12 +43,10 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         spinner_company = (MaterialSpinner) findViewById(R.id.company);
 
         //Buttons listners
-        btn_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Successfull logout", Toast.LENGTH_SHORT).show();
-                finish();
-            }
+        btn_logout.setOnClickListener(v -> {
+            Intent login = new Intent(HomepageActivity.this, LoginActivity.class);
+            login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(login);
         });
 
         //Fill spinners
@@ -57,7 +55,6 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
 
         //Spinners events
         spinner_event.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
                 Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
@@ -65,7 +62,6 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         });
 
         spinner_company.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
                 Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
@@ -80,22 +76,16 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         listview.setOnItemClickListener(this);
 
         //Buttons
-        btn_addProspect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addProspect = new Intent(HomepageActivity.this, AddProspectActivity.class);
-                startActivity(addProspect);
-            }
+        btn_addProspect.setOnClickListener(v -> {
+            Intent addProspect = new Intent(HomepageActivity.this, AddProspectActivity.class);
+            startActivity(addProspect);
         });
 
-        btn_sync.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                overridePendingTransition(0, 0);
-                startActivity(getIntent());
-                overridePendingTransition(0, 0);
-            }
+        btn_sync.setOnClickListener(v -> {
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+            overridePendingTransition(0, 0);
         });
 
     }

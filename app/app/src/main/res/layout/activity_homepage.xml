@@ -45,7 +45,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/bg_navbar"
         android:layout_width="338dp"
         android:layout_height="66dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,10 +58,10 @@
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_navbar"
         app:layout_constraintEnd_toStartOf="@+id/add_prospect"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintStart_toStartOf="@+id/bg_navbar"
+        app:layout_constraintTop_toTopOf="@+id/bg_navbar"
         app:srcCompat="@drawable/ic_mdi_light_search" />
 
     <ImageView
@@ -69,9 +69,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintEnd_toEndOf="@+id/bg_navbar"
+        app:layout_constraintStart_toStartOf="@+id/bg_navbar"
+        app:layout_constraintTop_toTopOf="@+id/bg_navbar"
         app:srcCompat="@drawable/ic_mdi_light_plus_box" />
 
     <ImageView
@@ -79,9 +79,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
+        app:layout_constraintEnd_toEndOf="@+id/bg_navbar"
         app:layout_constraintStart_toEndOf="@+id/add_prospect"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="@+id/bg_navbar"
         app:srcCompat="@drawable/ic_nav_tool" />
 
     <ImageView
@@ -126,7 +126,7 @@
         android:layout_height="399dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/listview_border"
-        app:layout_constraintBottom_toTopOf="@+id/imageView6"
+        app:layout_constraintBottom_toTopOf="@+id/bg_navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent" />
