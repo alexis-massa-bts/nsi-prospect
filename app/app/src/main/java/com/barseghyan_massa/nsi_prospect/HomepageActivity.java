@@ -1,8 +1,12 @@
 package com.barseghyan_massa.nsi_prospect;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -28,6 +32,7 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
     ListView listview;
     SearchView searchView;
     ArrayAdapter<String> prospectAdapter;
+    View entire_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,7 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         spinner_company = (MaterialSpinner) findViewById(R.id.company);
         searchView = findViewById(R.id.searchview);
         nav_bar = findViewById(R.id.bg_navbar);
+        entire_view = findViewById(R.id.entire_view);
 
         //Fill spinners
         spinner_company.setItems("item 1", "item 2", "item 3", "item 4", "item 5");
@@ -72,6 +78,15 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
 
         //ListEvents
         listview.setOnItemClickListener(this);
+        listview.setOnTouchListener((v, event) -> {
+            searchView.clearFocus();
+            searchView.setVisibility(View.INVISIBLE);
+            btn_search.setVisibility(View.VISIBLE);
+            btn_addProspect.setVisibility(View.VISIBLE);
+            btn_settings.setVisibility(View.VISIBLE);
+            nav_bar.setVisibility(View.VISIBLE);
+            return true;
+        });
 
         //Buttons
         btn_logout.setOnClickListener(v -> {
@@ -109,14 +124,24 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
                 btn_addProspect.setVisibility(View.VISIBLE);
                 btn_settings.setVisibility(View.VISIBLE);
                 nav_bar.setVisibility(View.VISIBLE);
-                return false;
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
                 prospectAdapter.getFilter().filter(newText);
-                return false;
+                return true;
             }
+        });
+
+        entire_view.setOnTouchListener((v, event) -> {
+            searchView.clearFocus();
+            searchView.setVisibility(View.INVISIBLE);
+            btn_search.setVisibility(View.VISIBLE);
+            btn_addProspect.setVisibility(View.VISIBLE);
+            btn_settings.setVisibility(View.VISIBLE);
+            nav_bar.setVisibility(View.VISIBLE);
+            return true;
         });
 
     }
@@ -147,4 +172,5 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         intent.putExtra("idProspect",id_prospect);
         startActivity(intent);
     }
+
 }
