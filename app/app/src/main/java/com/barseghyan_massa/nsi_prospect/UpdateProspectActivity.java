@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ public class UpdateProspectActivity extends AppCompatActivity {
     //References
     EditText siret, lastname, name, phone, mail, notes;
     MaterialSpinner spinner_company;
+    ImageView btn_back, btn_add_prospect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class UpdateProspectActivity extends AppCompatActivity {
         phone = findViewById(R.id.phone_phone);
         mail = findViewById(R.id.mail_mail);
         notes = findViewById(R.id.mlText_notes);
+        btn_back = findViewById(R.id.back);
+        btn_add_prospect = findViewById(R.id.btn_add_newProspect);
         spinner_company = findViewById(R.id.spinner_company);
 
         ArrayAdapter<Company> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CompanyHelper.find());
@@ -48,6 +52,13 @@ public class UpdateProspectActivity extends AppCompatActivity {
         phone.setText(old_prospect.getPhone());
         mail.setText(old_prospect.getMail());
         notes.setText(old_prospect.getNotes());
+
+        //Nav bar
+        btn_back.setOnClickListener(v -> { finish();});
+        btn_add_prospect.setOnClickListener(v -> {
+            Intent addProspect = new Intent(UpdateProspectActivity.this, AddProspectActivity.class);
+            startActivity(addProspect);
+        });
     }
 
 }
