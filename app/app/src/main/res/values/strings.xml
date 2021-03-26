@@ -9,4 +9,6 @@
     <string name="mail">Mail</string>
     <string name="notes">Notes</string>
     <string name="udpate_prospect">Update prospect</string>
+    <string name="recover_password">Recover Password</string>
+    <string name="lost_account">Lost account</string>
 </resources>

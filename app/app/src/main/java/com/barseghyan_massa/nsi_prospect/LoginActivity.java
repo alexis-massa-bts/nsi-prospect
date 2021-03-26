@@ -6,15 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.barseghyan_massa.nsi_prospect.db.helper.UserHelper;
 
+import java.net.Inet4Address;
+
 public class LoginActivity extends AppCompatActivity {
 
     //References
     Button btn_login;
+    ImageView btn_settings;
     EditText et_login, et_password;
 
     @Override
@@ -25,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
 
         //Declarations
         btn_login = findViewById(R.id.login_btn);
+        btn_settings = findViewById(R.id.btn_settings);
+
         et_login = findViewById(R.id.text_name);
         et_password = findViewById(R.id.text_lastname);
 
@@ -35,6 +41,12 @@ public class LoginActivity extends AppCompatActivity {
                 connection();
             }
         });
+
+    btn_settings.setOnClickListener(v -> {
+        Intent accountSettings = new Intent(LoginActivity.this, AccountSettingsActivity.class);
+        startActivity(accountSettings);
+    });
+
     }
 
     public void connection() {
