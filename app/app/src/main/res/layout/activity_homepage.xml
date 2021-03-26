@@ -131,5 +131,17 @@
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <SearchView
+        android:id="@+id/searchview"
+        android:layout_width="314dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="12dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

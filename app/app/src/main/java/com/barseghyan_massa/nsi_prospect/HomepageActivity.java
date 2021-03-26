@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,9 +23,11 @@ import java.util.List;
 public class HomepageActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     //References
-    ImageView btn_logout, btn_search, btn_addProspect, btn_settings, btn_option, btn_sync;
+    ImageView btn_logout, btn_search, btn_addProspect, btn_settings, btn_option, btn_sync, nav_bar;
     MaterialSpinner spinner_event, spinner_company;
     ListView listview;
+    SearchView searchView;
+    ArrayAdapter<String> prospectAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +44,8 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         listview = findViewById(R.id.listview);
         spinner_event = (MaterialSpinner) findViewById(R.id.event);
         spinner_company = (MaterialSpinner) findViewById(R.id.company);
-
-        //Buttons listners
-        btn_logout.setOnClickListener(v -> {
-            Intent login = new Intent(HomepageActivity.this, LoginActivity.class);
-            login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(login);
-        });
+        searchView = findViewById(R.id.searchview);
+        nav_bar = findViewById(R.id.bg_navbar);
 
         //Fill spinners
         spinner_company.setItems("item 1", "item 2", "item 3", "item 4", "item 5");
@@ -76,6 +74,12 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         listview.setOnItemClickListener(this);
 
         //Buttons
+        btn_logout.setOnClickListener(v -> {
+            Intent login = new Intent(HomepageActivity.this, LoginActivity.class);
+            login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(login);
+        });
+
         btn_addProspect.setOnClickListener(v -> {
             Intent addProspect = new Intent(HomepageActivity.this, AddProspectActivity.class);
             startActivity(addProspect);
@@ -86,6 +90,33 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
             overridePendingTransition(0, 0);
             startActivity(getIntent());
             overridePendingTransition(0, 0);
+        });
+
+        btn_search.setOnClickListener(v -> {
+            btn_search.setVisibility(View.INVISIBLE);
+            btn_addProspect.setVisibility(View.INVISIBLE);
+            btn_settings.setVisibility(View.INVISIBLE);
+            nav_bar.setVisibility(View.INVISIBLE);
+            searchView.setVisibility(View.VISIBLE);
+        });
+
+        //searchview events
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchView.setVisibility(View.INVISIBLE);
+                btn_search.setVisibility(View.VISIBLE);
+                btn_addProspect.setVisibility(View.VISIBLE);
+                btn_settings.setVisibility(View.VISIBLE);
+                nav_bar.setVisibility(View.VISIBLE);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                prospectAdapter.getFilter().filter(newText);
+                return false;
+            }
         });
 
     }
@@ -102,7 +133,7 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void updateList(List<String> allProspects) {
-        ArrayAdapter<String> prospectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,allProspects);
+        prospectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,allProspects);
         listview.setAdapter(prospectAdapter);
     }
 
