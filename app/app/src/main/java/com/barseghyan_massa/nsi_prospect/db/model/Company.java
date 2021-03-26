@@ -54,10 +54,6 @@ public class Company {
 
     @Override
     public String toString() {
-        return "Company{" +
-                "name='" + name + '\'' +
-                ", siret=" + siret +
-                ", createdAt=" + createdAt +
-                '}';
+        return name + " - " + siret;
     }
 }

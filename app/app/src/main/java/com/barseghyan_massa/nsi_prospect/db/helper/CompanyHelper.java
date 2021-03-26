@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.barseghyan_massa.nsi_prospect.MyApplication;
 import com.barseghyan_massa.nsi_prospect.db.model.Company;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class CompanyHelper {
     private static final String KEY_COMPANY_SIRET = DatabaseHelper.getKeyCompanySiret();
 
     /*  FIND ALL COMPAGNIES */
-    public List<Company> find() {
+    public static List<Company> find() {
         //Declaration of list to return
         List<Company> compagnies = new ArrayList<>();
         //Query to execute
@@ -39,7 +40,7 @@ public class CompanyHelper {
             //if cursor has data
             if (cursor.moveToFirst()) {
                 do {
-                    compagnies.add(new Company(cursor.getString(0), cursor.getInt(1)));
+                    compagnies.add(new Company(cursor.getString(1), cursor.getInt(2)));
                 } while (cursor.moveToNext());
             } else {
                 //If no result : message
@@ -54,11 +55,11 @@ public class CompanyHelper {
     }
 
     /*  FIND ONE COMPANY BY ID */
-    public static Company findOne(int id) {
+    public static Company findOne(int siret) {
         //Declaration of list to return
         List<Company> prospects = new ArrayList<>();
         //Query to execute
-        String queryString = "SELECT * FROM " + TABLE_COMPANY + " WHERE " + KEY_ID + " = " + id;
+        String queryString = "SELECT * FROM " + TABLE_COMPANY + " WHERE " + KEY_COMPANY_SIRET + " = " + siret;
         //get db
         SQLiteDatabase db = CompanyHelper.db.getReadableDatabase();
         //gest data in cursor

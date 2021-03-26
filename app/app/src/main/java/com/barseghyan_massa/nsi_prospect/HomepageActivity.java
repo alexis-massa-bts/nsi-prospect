@@ -131,14 +131,15 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         List<String> allProspects = new ArrayList<>();
 
         listProspects.forEach(p -> {
-            allProspects.add(String.format("%s %s %s", p.getName(), p.getLastname(), p.getCompany().getName()));
+//            allProspects.add(String.format("%s %s %s", p.getName(), p.getLastname(), p.getCompany().getName()));
+            allProspects.add(String.format("%s", p.toString()));
         });
 
         return allProspects;
     }
 
     public void updateList(List<String> allProspects) {
-        prospectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,allProspects);
+        prospectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allProspects);
 
         listview.setAdapter(prospectAdapter);
     }
@@ -146,11 +147,11 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         long prospect = parent.getItemIdAtPosition(position);
-        int id_prospect = (int) prospect+1;
+        int id_prospect = (int) prospect + 1;
 
         //start activity with id
         Intent intent = new Intent(this, UpdateProspectActivity.class);
-        intent.putExtra("idProspect",id_prospect);
+        intent.putExtra("idProspect", id_prospect);
         startActivity(intent);
 
     }

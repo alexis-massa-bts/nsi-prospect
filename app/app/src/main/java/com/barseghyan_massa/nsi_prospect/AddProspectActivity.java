@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,14 +13,18 @@ import android.widget.Toast;
 import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.barseghyan_massa.nsi_prospect.db.helper.CompanyHelper;
 import com.barseghyan_massa.nsi_prospect.db.helper.ProspectHelper;
+import com.barseghyan_massa.nsi_prospect.db.model.Company;
 import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 public class AddProspectActivity extends AppCompatActivity {
 
     //references
     ImageView btn_logout, btn_globeSearch, btn_add_newProspect, btn_settings, btn_option, btn_sync, btn_back;
     Button btn_addProspect;
+    MaterialSpinner spinner_company;
     EditText number_siret, text_name, text_lastname, text_phone, text_mail, text_notes;
 
     @Override
@@ -43,6 +48,7 @@ public class AddProspectActivity extends AppCompatActivity {
         text_phone = findViewById(R.id.phone_phone);
         text_mail = findViewById(R.id.mail_mail);
         text_notes = findViewById(R.id.mlText_notes);
+        spinner_company = findViewById(R.id.spinner_company);
 
         btn_logout.setOnClickListener(v -> {
             Intent login = new Intent(AddProspectActivity.this, LoginActivity.class);
@@ -79,6 +85,9 @@ public class AddProspectActivity extends AppCompatActivity {
         btn_add_newProspect.setOnClickListener(view -> goToAddProspect());
 
         btn_back.setOnClickListener(v -> finish());
+
+        ArrayAdapter<Company> arrayAdapter = new ArrayAdapter<Company>(this, android.R.layout.simple_spinner_item, CompanyHelper.find());
+        spinner_company.setAdapter(arrayAdapter);
 
     }
 
