@@ -1,8 +1,9 @@
 package com.barseghyan_massa.nsi_prospect.db.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Prospect {
+public class Prospect implements Serializable {
     String lastname;
     String name;
     String phone;
@@ -108,14 +109,14 @@ public class Prospect {
 
     @Override
     public String toString() {
-        return "Prospect{" +
-                "name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", phone='" + phone + '\'' +
-                ", mail='" + mail + '\'' +
-                ", notes='" + notes + '\'' +
-                ", company=" + company +
-                ", createdAat=" + createdAat +
-                '}';
+        return capitalize(name) + " " + capitalize(lastname) + " - " + company ;
+    }
+
+    public static String capitalize(String str) {
+        if(str == null || str.isEmpty()) {
+            return str;
+        }
+
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 }

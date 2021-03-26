@@ -1,8 +1,9 @@
 package com.barseghyan_massa.nsi_prospect.db.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Company {
+public class Company implements Serializable {
     String name;
     int siret;
     Date createdAt;

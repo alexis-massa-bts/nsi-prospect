@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +33,7 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
     MaterialSpinner spinner_event, spinner_company;
     ListView listview;
     SearchView searchView;
-    ArrayAdapter<String> prospectAdapter;
+    ArrayAdapter<Prospect> prospectAdapter;
     View entire_view;
 
     @Override
@@ -73,7 +75,7 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         });
 
         //ListView
-        List<String> allProspects = getProspects();
+        List<Prospect> allProspects = getProspects();
         updateList(allProspects);
 
         //ListEvents
@@ -126,19 +128,18 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         });
     }
 
-    public List<String> getProspects() {
+    public List<Prospect> getProspects() {
         List<Prospect> listProspects = ProspectHelper.find();
-        List<String> allProspects = new ArrayList<>();
+        List<Prospect> allProspects = new ArrayList<>();
 
         listProspects.forEach(p -> {
-//            allProspects.add(String.format("%s %s %s", p.getName(), p.getLastname(), p.getCompany().getName()));
-            allProspects.add(String.format("%s", p.toString()));
+            allProspects.add(p);
         });
 
         return allProspects;
     }
 
-    public void updateList(List<String> allProspects) {
+    public void updateList(List<Prospect> allProspects) {
         prospectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allProspects);
         listview.setAdapter(prospectAdapter);
     }
@@ -148,12 +149,12 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         long prospect = parent.getItemIdAtPosition(position);
         int id_prospect = (int) prospect + 1;
 
+        Prospect p = (Prospect) parent.getItemAtPosition(position);
+
         //start activity with id
         Intent intent = new Intent(this, UpdateProspectActivity.class);
-        intent.putExtra("idProspect", id_prospect);
+        intent.putExtra("Prospect", p);
         startActivity(intent);
-        finish();
-
     }
 
 }

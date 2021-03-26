@@ -86,7 +86,7 @@ public class AddProspectActivity extends AppCompatActivity {
 
         btn_back.setOnClickListener(v -> finish());
 
-        ArrayAdapter<Company> arrayAdapter = new ArrayAdapter<Company>(this, android.R.layout.simple_spinner_item, CompanyHelper.find());
+        ArrayAdapter<Company> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CompanyHelper.find());
         spinner_company.setAdapter(arrayAdapter);
 
     }
