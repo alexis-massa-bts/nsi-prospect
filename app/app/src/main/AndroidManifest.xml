@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nsiprospect">
+        <activity android:name=".UpdateProspectActivity"/>
         <activity android:name=".AddProspectActivity" />
         <activity android:name=".HomepageActivity" />
         <activity android:name=".LoginActivity">

@@ -110,6 +110,10 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         long prospect = parent.getItemIdAtPosition(position);
         int id_prospect = (int) prospect+1;
-        Toast.makeText(getApplicationContext(), "ID: " + id_prospect, Toast.LENGTH_SHORT).show();
+
+        //start activity with id
+        Intent intent = new Intent(this, UpdateProspectActivity.class);
+        intent.putExtra("idProspect",id_prospect);
+        startActivity(intent);
     }
 }
