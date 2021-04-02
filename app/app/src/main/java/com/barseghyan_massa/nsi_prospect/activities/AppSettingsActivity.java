@@ -1,10 +1,12 @@
-package com.barseghyan_massa.nsi_prospect;
+package com.barseghyan_massa.nsi_prospect.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.barseghyan_massa.nsi_prospect.R;
 
 public class AppSettingsActivity extends AppCompatActivity {
 
