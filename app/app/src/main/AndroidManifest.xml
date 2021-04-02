@@ -10,12 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nsiprospect">
-        <activity android:name=".AppSettingsActivity"></activity>
-        <activity android:name=".AccountSettingsActivity" />
-        <activity android:name=".UpdateProspectActivity" />
-        <activity android:name=".AddProspectActivity" />
-        <activity android:name=".HomepageActivity" />
-        <activity android:name=".LoginActivity">
+
+        <activity
+            android:name=".activities.AccountSettingsActivity"
+            android:label="@string/title_activity_account_settings"
+            android:theme="@style/Theme.Nsiprospect.NoActionBar" />
+        <activity android:name=".activities.UpdateProspectActivity" />
+        <activity android:name=".activities.AddProspectActivity" />
+        <activity android:name=".activities.HomepageActivity" />
+        <activity android:name=".activities.LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.barseghyan_massa.nsi_prospect;
+package com.barseghyan_massa.nsi_prospect.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.barseghyan_massa.nsi_prospect.R;
 import com.barseghyan_massa.nsi_prospect.db.helper.ProspectHelper;
 import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 import com.google.android.material.snackbar.Snackbar;

@@ -1,18 +1,17 @@
-package com.barseghyan_massa.nsi_prospect;
+package com.barseghyan_massa.nsi_prospect.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.barseghyan_massa.nsi_prospect.R;
 import com.barseghyan_massa.nsi_prospect.db.helper.CompanyHelper;
 import com.barseghyan_massa.nsi_prospect.db.helper.ProspectHelper;
 import com.barseghyan_massa.nsi_prospect.db.model.Company;

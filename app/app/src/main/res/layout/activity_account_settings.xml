@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BG"
-    tools:context=".AccountSettingsActivity">
+    tools:context=".activities.AccountSettingsActivity">
 
     <ImageView
         android:id="@+id/logout"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="39dp"
+        android:layout_height="40dp"
         android:layout_marginStart="347dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="36dp"
@@ -73,37 +73,38 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="1.0"
+        tools:context=".activities.AccountSettingsActivity">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/BG">
+                android:background="@color/BG"
+                android:theme="@style/Theme.Nsiprospect.AppBarOverlay">
 
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tl_password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/recover_password"/>
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/BG" />
+            </com.google.android.material.appbar.AppBarLayout>
 
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tl_account"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/lost_account"/>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            </com.google.android.material.tabs.TabLayout>
+            </androidx.viewpager.widget.ViewPager>
 
-
-        </com.google.android.material.appbar.AppBarLayout>
-
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                app:srcCompat="@android:drawable/ic_dialog_email" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

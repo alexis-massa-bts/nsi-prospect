@@ -1,6 +1,5 @@
-package com.barseghyan_massa.nsi_prospect;
+package com.barseghyan_massa.nsi_prospect.activities;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +9,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.barseghyan_massa.nsi_prospect.R;
 import com.barseghyan_massa.nsi_prospect.db.helper.UserHelper;
-
-import java.net.Inet4Address;
 
 public class LoginActivity extends AppCompatActivity {
 

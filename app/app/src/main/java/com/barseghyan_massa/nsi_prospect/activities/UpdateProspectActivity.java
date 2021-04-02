@@ -1,4 +1,4 @@
-package com.barseghyan_massa.nsi_prospect;
+package com.barseghyan_massa.nsi_prospect.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,10 +7,8 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
 
+import com.barseghyan_massa.nsi_prospect.R;
 import com.barseghyan_massa.nsi_prospect.db.helper.CompanyHelper;
 import com.barseghyan_massa.nsi_prospect.db.model.Company;
 import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
