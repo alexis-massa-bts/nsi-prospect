@@ -12,21 +12,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.barseghyan_massa.nsi_prospect.activities.ui.main.SectionsPagerAdapter;
 
 public class AccountSettingsActivity extends AppCompatActivity {
+
+    //References
+    ViewPager viewPager;
+    TabLayout tabs;
+    FloatingActionButton fab;
+    ImageView btn_goBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_settings);
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
+        tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +42,14 @@ public class AccountSettingsActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
+        });
+
+        //Declarations
+        btn_goBack = findViewById(R.id.go_back);
+
+        //Buttons events
+        btn_goBack.setOnClickListener(v -> {
+            finish();
         });
     }
 

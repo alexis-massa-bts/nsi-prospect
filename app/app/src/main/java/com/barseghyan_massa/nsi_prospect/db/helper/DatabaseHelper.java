@@ -127,8 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //TODO : Hard-coded imports
         //Users
         db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('admin', 'admin')");
-        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('achot', 'achot')");
-        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('alexis', 'alexis')");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + "," + KEY_USER_MAIL + ") VALUES('achot', 'achot','achot.barseghyan@gmail.com')");
         db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('', '')");
 
         //Companies

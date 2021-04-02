@@ -33,17 +33,12 @@ public class LoginActivity extends AppCompatActivity {
         et_password = findViewById(R.id.text_lastname);
 
         //Button listeners
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                connection();
-            }
-        });
+        btn_login.setOnClickListener(v -> connection());
 
-    btn_settings.setOnClickListener(v -> {
-        Intent accountSettings = new Intent(LoginActivity.this, AccountSettingsActivity.class);
-        startActivity(accountSettings);
-    });
+        btn_settings.setOnClickListener(v -> {
+            Intent accountSettings = new Intent(LoginActivity.this, AccountSettingsActivity.class);
+            startActivity(accountSettings);
+        });
 
     }
 

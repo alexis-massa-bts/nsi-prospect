@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.barseghyan_massa.nsi_prospect.R;
-import com.barseghyan_massa.nsi_prospect.fragments.AccountLostFragment;
+import com.barseghyan_massa.nsi_prospect.fragments.PasswordLostFragment;
 import com.barseghyan_massa.nsi_prospect.fragments.LoginLostFragment;
 
 /**
@@ -19,7 +19,7 @@ import com.barseghyan_massa.nsi_prospect.fragments.LoginLostFragment;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
+    private static final int[] TAB_TITLES = new int[]{R.string.recover_password, R.string.lost_account};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -35,7 +35,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 fragment = new LoginLostFragment();
                 break;
             case 1:
-                fragment = new AccountLostFragment();
+                fragment = new PasswordLostFragment();
                 break;
         }
         return fragment;
