@@ -12,8 +12,9 @@
         android:id="@+id/event"
         android:layout_width="338dp"
         android:layout_height="48dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:ms_arrow_tint="#AEAEAE"
@@ -21,11 +22,12 @@
         app:ms_text_color="@color/white" />
 
     <com.jaredrummler.materialspinner.MaterialSpinner
-        android:id="@+id/company"
+        android:id="@+id/theme"
         android:layout_width="338dp"
         android:layout_height="49dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/event"
         app:ms_arrow_tint="#AEAEAE"
@@ -143,6 +145,28 @@
         app:layout_constraintBottom_toBottomOf="@+id/bg_navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="5dp"
+        android:text="Events: "
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/event"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="5dp"
+        android:text="Companies: "
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/theme"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

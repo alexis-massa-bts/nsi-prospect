@@ -139,15 +139,18 @@ public class ProspectHelper {
 
 //      Where clause
         String whereClause = ""
-                + KEY_PROSPECT_NAME + "= ? "
+                + KEY_PROSPECT_NAME + "= ? AND "
                 + KEY_PROSPECT_LASTNAME + "= ? AND "
                 + KEY_PROSPECT_PHONE + "= ? AND "
                 + KEY_PROSPECT_MAIL + "= ? AND "
                 + KEY_PROSPECT_NOTES + "= ? AND "
                 + KEY_CREATED_AT + "= ? ;";
 
+
 //      Where arguments
         String[] whereArgs = new String[]{oldProspect.getName(), oldProspect.getLastname(), oldProspect.getPhone(), oldProspect.getMail(), oldProspect.getNotes(), oldProspect.getCreatedAat()};
+
+        Toast.makeText(MyApplication.getAppContext(), "" + whereClause, Toast.LENGTH_SHORT).show();
 
 //      Query returns long
         long updated = db.update(TABLE_PROSPECT, cv, whereClause, whereArgs);

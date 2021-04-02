@@ -143,6 +143,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "," + KEY_PROSPECT_MAIL
                 + "," + KEY_PROSPECT_NOTES
                 + "," + KEY_PROSPECT_COMPANY + ")VALUES('doe', 'john', '0102030405', 'john.doe@gmail.com', 'just le best', 3)");
+
+        db.execSQL("INSERT INTO " + TABLE_PROSPECT + "(" + KEY_PROSPECT_NAME
+                + "," + KEY_PROSPECT_LASTNAME
+                + "," + KEY_PROSPECT_PHONE
+                + "," + KEY_PROSPECT_MAIL
+                + "," + KEY_PROSPECT_NOTES
+                + "," + KEY_PROSPECT_COMPANY + ")VALUES('michel', 'jean', '0102030405', 'john.doe@gmail.com', 'just le best', 2)");
+
+        db.execSQL("INSERT INTO " + TABLE_PROSPECT + "(" + KEY_PROSPECT_NAME
+                + "," + KEY_PROSPECT_LASTNAME
+                + "," + KEY_PROSPECT_PHONE
+                + "," + KEY_PROSPECT_MAIL
+                + "," + KEY_PROSPECT_NOTES
+                + "," + KEY_PROSPECT_COMPANY + ")VALUES('janine', 'daniel', '0102030405', 'john.doe@gmail.com', 'just le best', 1)");
     }
 
     @Override

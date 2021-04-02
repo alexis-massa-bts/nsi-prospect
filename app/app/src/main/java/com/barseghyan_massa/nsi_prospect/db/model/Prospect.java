@@ -47,6 +47,15 @@ public class Prospect implements Serializable {
         this.createdAat = new Date(System.currentTimeMillis());
     }
 
+    public Prospect(String name, String lastname, String phone, String mail, String notes, String createdAat) {
+        this.lastname = lastname;
+        this.name = name;
+        this.phone = phone;
+        this.mail = mail;
+        this.notes = notes;
+        this.createdAat = new Date(System.currentTimeMillis());
+    }
+
     /*=====================================Getters================================================*/
     public String getName() {
         return name;

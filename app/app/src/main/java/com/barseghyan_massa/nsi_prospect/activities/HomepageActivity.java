@@ -5,14 +5,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.barseghyan_massa.nsi_prospect.R;
+import com.barseghyan_massa.nsi_prospect.db.helper.CompanyHelper;
 import com.barseghyan_massa.nsi_prospect.db.helper.ProspectHelper;
+import com.barseghyan_massa.nsi_prospect.db.model.Company;
 import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 import com.google.android.material.snackbar.Snackbar;
 import com.jaredrummler.materialspinner.MaterialSpinner;
@@ -29,6 +33,7 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
     SearchView searchView;
     ArrayAdapter<Prospect> prospectAdapter;
     View entire_view;
+    List<String> allCompanies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +46,19 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         btn_option = findViewById(R.id.app_option);
         btn_search = findViewById(R.id.search);
         btn_sync = findViewById(R.id.sync);
-        btn_settings = findViewById(R.id.btn_settings);
+        btn_settings = findViewById(R.id.settings);
         listview = findViewById(R.id.listview);
         spinner_event = (MaterialSpinner) findViewById(R.id.event);
-        spinner_company = (MaterialSpinner) findViewById(R.id.company);
+        spinner_company = (MaterialSpinner) findViewById(R.id.theme);
         searchView = findViewById(R.id.searchview);
         nav_bar = findViewById(R.id.bg_navbar);
         entire_view = findViewById(R.id.entire_view);
 
         //Fill spinners
-        spinner_company.setItems("item 1", "item 2", "item 3", "item 4", "item 5");
-        spinner_event.setItems("item 1", "item 2", "item 3", "item 4", "item 5");
+        allCompanies = getCompanies();
+
+        spinner_company.setItems(allCompanies);
+        spinner_event.setItems("All");
 
         //Spinners events
         spinner_event.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
@@ -64,7 +71,14 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         spinner_company.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
+                //Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
+                if (item == "All") {
+                    finish();
+                    overridePendingTransition(0, 0);
+                    startActivity(getIntent());
+                    overridePendingTransition(0, 0);
+                }
+                prospectAdapter.getFilter().filter(item);
             }
         });
 
@@ -137,6 +151,18 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         });
 
         return allProspects;
+    }
+
+    public List<String> getCompanies() {
+        List<Company> listCompanies = CompanyHelper.find();
+        List<String> CompanyNames = new ArrayList<String>();
+
+        CompanyNames.add("All");
+
+        listCompanies.forEach(c -> {
+            CompanyNames.add(c.getName());
+        });
+        return CompanyNames;
     }
 
     public void updateList(List<Prospect> allProspects) {
