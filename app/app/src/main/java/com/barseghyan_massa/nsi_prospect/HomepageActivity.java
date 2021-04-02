@@ -38,9 +38,9 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
         btn_logout = findViewById(R.id.logout);
         btn_addProspect = findViewById(R.id.add_prospect);
         btn_option = findViewById(R.id.app_option);
-        btn_settings = findViewById(R.id.settings);
         btn_search = findViewById(R.id.search);
         btn_sync = findViewById(R.id.sync);
+        btn_settings = findViewById(R.id.btn_settings);
         listview = findViewById(R.id.listview);
         spinner_event = (MaterialSpinner) findViewById(R.id.event);
         spinner_company = (MaterialSpinner) findViewById(R.id.company);
@@ -99,6 +99,11 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
             btn_settings.setVisibility(View.INVISIBLE);
             nav_bar.setVisibility(View.INVISIBLE);
             searchView.setVisibility(View.VISIBLE);
+        });
+
+        btn_option.setOnClickListener(v -> {
+            Intent AppSettings = new Intent(HomepageActivity.this, AppSettingsActivity.class);
+            startActivity(AppSettings);
         });
 
         //searchview events
