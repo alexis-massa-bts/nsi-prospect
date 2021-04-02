@@ -1,20 +1,13 @@
 package com.barseghyan_massa.nsi_prospect;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -126,6 +119,7 @@ public class HomepageActivity extends AppCompatActivity implements AdapterView.O
                 return true;
             }
         });
+
     }
 
     public List<Prospect> getProspects() {
