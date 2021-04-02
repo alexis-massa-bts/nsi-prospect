@@ -1,6 +1,5 @@
 package com.barseghyan_massa.nsi_prospect.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 
 import com.barseghyan_massa.nsi_prospect.MyApplication;
 import com.barseghyan_massa.nsi_prospect.R;
-import com.barseghyan_massa.nsi_prospect.mail.GMailSender;
+import com.barseghyan_massa.nsi_prospect.mail.JavaMailAPI;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,13 +36,13 @@ public class PasswordLostFragment extends Fragment {
     }
 
     private void generatePassword(String et_mail) throws Exception {
-        Toast.makeText(MyApplication.getAppContext(), et_mail, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MyApplication.getAppContext(), "Envoi", Toast.LENGTH_SHORT).show();
 
-        GMailSender sender = new GMailSender("alexis2massa@gmail.com", "P@ssw0rdSIO");
-        sender.sendMail("Nouveau mot de passe !",
-                "Voici votre nouveau mot de passe : 1234",
-                "alexis2massa@gmail.com",
-                et_mail);
+        String subject = "Nouveau mot de passe !";
+        String message = "Voici votre nouveau mot de passe : 1234";
+
+        JavaMailAPI javaMailAPI = new JavaMailAPI(MyApplication.getAppContext(), et_mail, subject, message);
+        javaMailAPI.execute();
     }
 
     @Override
@@ -61,7 +60,7 @@ public class PasswordLostFragment extends Fragment {
 
         btn_generate.setOnClickListener(v -> {
             try {
-                generatePassword(String.valueOf(et_mail.getText()));
+                generatePassword(et_mail.getText().toString().trim());
                 Toast.makeText(MyApplication.getAppContext(), "Success", Toast.LENGTH_SHORT).show();
 
             } catch (Exception e) {
