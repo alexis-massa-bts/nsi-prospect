@@ -126,7 +126,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_PROSPECT);
         db.execSQL(CREATE_TABLE_PROJECT);
 
-        //TODO : Hard-coded imports
+        //HARD CODED IMPORTS
         //Users
         String hashedAdmin = BCrypt.hashpw("admin", BCrypt.gensalt());
 

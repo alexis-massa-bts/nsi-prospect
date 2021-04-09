@@ -10,7 +10,7 @@ public class Prospect implements Serializable {
     String mail;
     String notes;
     Company company;
-    Date createdAat;
+    Date createdAt;
 
     /*=====================================Constructors===========================================*/
     public Prospect() {
@@ -19,13 +19,13 @@ public class Prospect implements Serializable {
         this.phone = "default";
         this.mail = "default";
         this.notes = "default";
-        this.createdAat = new Date(System.currentTimeMillis());
+        this.createdAt = new Date(System.currentTimeMillis());
     }
 
     public Prospect(String name, String lastname) {
         this.lastname = lastname;
         this.name = name;
-        this.createdAat = new Date(System.currentTimeMillis());
+        this.createdAt = new Date(System.currentTimeMillis());
     }
 
     public Prospect(String name, String lastname, String phone, String mail, String notes) {
@@ -34,7 +34,7 @@ public class Prospect implements Serializable {
         this.phone = phone;
         this.mail = mail;
         this.notes = notes;
-        this.createdAat = new Date(System.currentTimeMillis());
+        this.createdAt = new Date(System.currentTimeMillis());
     }
 
     public Prospect(String name, String lastname, String phone, String mail, String notes, Company company) {
@@ -44,16 +44,16 @@ public class Prospect implements Serializable {
         this.mail = mail;
         this.notes = notes;
         this.company = company;
-        this.createdAat = new Date(System.currentTimeMillis());
+        this.createdAt = new Date(System.currentTimeMillis());
     }
 
-    public Prospect(String name, String lastname, String phone, String mail, String notes, String createdAat) {
+    public Prospect(String name, String lastname, String phone, String mail, String notes, String createdAt) {
         this.lastname = lastname;
         this.name = name;
         this.phone = phone;
         this.mail = mail;
         this.notes = notes;
-        this.createdAat = new Date(System.currentTimeMillis());
+        this.createdAt = new Date(System.currentTimeMillis());
     }
 
     /*=====================================Getters================================================*/
@@ -81,8 +81,8 @@ public class Prospect implements Serializable {
         return company;
     }
 
-    public String getCreatedAat() {
-        return String.valueOf(createdAat);
+    public String getCreatedAt() {
+        return String.valueOf(createdAt);
     }
 
     /*=====================================Setters================================================*/
@@ -110,8 +110,8 @@ public class Prospect implements Serializable {
         this.company = company;
     }
 
-    public void setCreatedAat(Date createdAat) {
-        this.createdAat = createdAat;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     /*=====================================Methods================================================*/

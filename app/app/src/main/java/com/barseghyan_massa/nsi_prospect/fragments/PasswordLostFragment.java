@@ -1,11 +1,6 @@
 package com.barseghyan_massa.nsi_prospect.fragments;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.barseghyan_massa.nsi_prospect.MyApplication;
 import com.barseghyan_massa.nsi_prospect.R;
+import com.barseghyan_massa.nsi_prospect.db.helper.UserHelper;
+import com.barseghyan_massa.nsi_prospect.db.model.User;
 import com.barseghyan_massa.nsi_prospect.mail.JavaMailAPI;
 
 /**
@@ -36,6 +37,7 @@ public class PasswordLostFragment extends Fragment {
     }
 
     private void generatePassword(String et_mail) throws Exception {
+        //Creer le mail
         Toast.makeText(MyApplication.getAppContext(), "Envoi", Toast.LENGTH_SHORT).show();
 
         String subject = "Nouveau mot de passe !";
@@ -43,6 +45,12 @@ public class PasswordLostFragment extends Fragment {
 
         JavaMailAPI javaMailAPI = new JavaMailAPI(MyApplication.getAppContext(), et_mail, subject, message);
         javaMailAPI.execute();
+
+        //Changement dans la BDD
+        User oldUser = UserHelper.findOne(et_mail);
+        User newUser = UserHelper.findOne(et_mail);
+        newUser.setMail(et_mail);
+
     }
 
     @Override
