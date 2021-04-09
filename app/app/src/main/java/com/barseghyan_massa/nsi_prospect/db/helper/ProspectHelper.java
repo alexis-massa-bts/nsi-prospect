@@ -2,13 +2,11 @@ package com.barseghyan_massa.nsi_prospect.db.helper;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.barseghyan_massa.nsi_prospect.MyApplication;
-import com.barseghyan_massa.nsi_prospect.db.model.Company;
 import com.barseghyan_massa.nsi_prospect.db.model.Prospect;
 
 import java.util.ArrayList;
@@ -35,6 +33,7 @@ public class ProspectHelper {
 
     /**
      * FIND ALL PROSPECTS
+     *
      * @return List of Prospect
      */
     public static List<Prospect> find() {
@@ -67,6 +66,7 @@ public class ProspectHelper {
 
     /**
      * FIND ONE PROSPECT BY ID
+     *
      * @param id : Prospect to find id
      * @return Prospect (null is not found)
      */
@@ -97,6 +97,7 @@ public class ProspectHelper {
 
     /**
      * INSERT PROSPECT
+     *
      * @param prospect : Prospect to insert
      * @return boolean
      */
@@ -111,7 +112,7 @@ public class ProspectHelper {
         cv.put(KEY_PROSPECT_PHONE, prospect.getPhone());
         cv.put(KEY_PROSPECT_MAIL, prospect.getMail());
         cv.put(KEY_PROSPECT_NOTES, prospect.getNotes());
-        cv.put(KEY_CREATED_AT, prospect.getCreatedAat());
+        cv.put(KEY_CREATED_AT, prospect.getCreatedAt());
 
 //       Query returns long
         long insert = db.insert(TABLE_PROSPECT, null, cv);
@@ -120,6 +121,7 @@ public class ProspectHelper {
 
     /**
      * UPDATE PROSPECT
+     *
      * @param oldProspect : Prospect to update
      * @param newProspect : Propect updated
      * @return boolean
@@ -128,32 +130,26 @@ public class ProspectHelper {
 //      Get db
         SQLiteDatabase db = ProspectHelper.db.getWritableDatabase();
 
-//      Values to insert : key - value
-        ContentValues cv = new ContentValues();
-        cv.put(KEY_PROSPECT_NAME, newProspect.getName());
-        cv.put(KEY_PROSPECT_LASTNAME, newProspect.getLastname());
-        cv.put(KEY_PROSPECT_PHONE, newProspect.getPhone());
-        cv.put(KEY_PROSPECT_MAIL, newProspect.getMail());
-        cv.put(KEY_PROSPECT_NOTES, newProspect.getNotes());
-        cv.put(KEY_CREATED_AT, newProspect.getCreatedAat());
-
 //      Where clause
-        String whereClause = ""
-                + KEY_PROSPECT_NAME + "= ? AND "
-                + KEY_PROSPECT_LASTNAME + "= ? AND "
-                + KEY_PROSPECT_PHONE + "= ? AND "
-                + KEY_PROSPECT_MAIL + "= ? AND "
-                + KEY_PROSPECT_NOTES + "= ? AND "
-                + KEY_CREATED_AT + "= ? ;";
+        String whereQuery = "UPDATE " + TABLE_PROSPECT + " SET "
+                + KEY_PROSPECT_NAME + "= '" + newProspect.getName() + "', "
+                + KEY_PROSPECT_LASTNAME + "= '" + newProspect.getLastname() + "', "
+                + KEY_PROSPECT_PHONE + "= '" + newProspect.getPhone() + "', "
+                + KEY_PROSPECT_MAIL + "= '" + newProspect.getMail() + "', "
+                + KEY_PROSPECT_NOTES + "= '" + newProspect.getNotes() + "', "
+                + " WHERE "
+                + KEY_PROSPECT_NAME + "= '" + oldProspect.getName() + "' AND "
+                + KEY_PROSPECT_LASTNAME + "= '" + oldProspect.getLastname() + "' AND "
+                + KEY_PROSPECT_PHONE + "= " + oldProspect.getPhone() + "' AND "
+                + KEY_PROSPECT_MAIL + "= '" + oldProspect.getMail() + "' AND "
+                + KEY_PROSPECT_NOTES + "= '" + oldProspect.getNotes() + "' AND "
+                + KEY_CREATED_AT + "= '" + oldProspect.getCreatedAt() + "';";
 
-
-//      Where arguments
-        String[] whereArgs = new String[]{oldProspect.getName(), oldProspect.getLastname(), oldProspect.getPhone(), oldProspect.getMail(), oldProspect.getNotes(), oldProspect.getCreatedAat()};
-
-        Toast.makeText(MyApplication.getAppContext(), "" + whereClause, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MyApplication.getAppContext(), "" + whereQuery, Toast.LENGTH_SHORT).show();
 
 //      Query returns long
-        long updated = db.update(TABLE_PROSPECT, cv, whereClause, whereArgs);
-        return updated != -1;
+        db.execSQL(whereQuery);
+        return true;
+
     }
 }

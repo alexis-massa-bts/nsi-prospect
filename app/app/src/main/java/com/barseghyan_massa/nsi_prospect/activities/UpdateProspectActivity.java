@@ -65,7 +65,7 @@ public class UpdateProspectActivity extends AppCompatActivity {
 
         update.setOnClickListener(v -> {
             Prospect newProspect = new Prospect(name.getText().toString(), lastname.getText().toString(),
-                    phone.getText().toString(), mail.getText().toString(), notes.getText().toString(), old_prospect.getCreatedAat());
+                    phone.getText().toString(), mail.getText().toString(), notes.getText().toString(), old_prospect.getCreatedAt());
 
             boolean inserted = ProspectHelper.update(old_prospect, newProspect);
             Toast.makeText(this, "" + inserted, Toast.LENGTH_SHORT).show();

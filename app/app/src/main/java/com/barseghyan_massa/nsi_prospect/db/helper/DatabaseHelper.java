@@ -124,7 +124,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_PROSPECT);
         db.execSQL(CREATE_TABLE_PROJECT);
 
-        //TODO : Hard-coded imports
+        //HARD CODED IMPORTS
         //Users
         db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('admin', 'admin')");
         db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + "," + KEY_USER_MAIL + ") VALUES('achot', 'achot','achot.barseghyan@gmail.com')");
