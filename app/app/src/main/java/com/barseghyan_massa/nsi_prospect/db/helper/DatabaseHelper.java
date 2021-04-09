@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.barseghyan_massa.nsi_prospect.MyApplication;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Logcat tag
@@ -126,8 +128,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //TODO : Hard-coded imports
         //Users
-        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('admin', 'admin')");
-        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + "," + KEY_USER_MAIL + ") VALUES('achot', 'achot','achot.barseghyan@gmail.com')");
+        String hashedAdmin = BCrypt.hashpw("admin", BCrypt.gensalt());
+
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('admin',"+ hashedAdmin +")");
         db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('', '')");
 
         //Companies

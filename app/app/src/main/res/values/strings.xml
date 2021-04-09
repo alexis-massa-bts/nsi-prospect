@@ -12,7 +12,6 @@
     <string name="recover_password">Recover Password</string>
     <string name="lost_account">Lost account</string>
     <string name="title_activity_app_settings">AppSettingsActivity</string>
-    <string name="title_activity_account_settings">Account Settings</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
