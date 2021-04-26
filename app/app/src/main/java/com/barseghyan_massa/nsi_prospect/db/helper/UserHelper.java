@@ -9,6 +9,8 @@ import android.widget.Toast;
 import com.barseghyan_massa.nsi_prospect.MyApplication;
 import com.barseghyan_massa.nsi_prospect.db.model.User;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,30 +113,37 @@ public class UserHelper {
 
     /* CONNECT USER */
     public boolean connection(String login, String password) {
+
+        boolean exit = false;
+
         //Query to execute
-        String queryString = "SELECT * FROM " + TABLE_USER + " WHERE " + KEY_USER_LOGIN + " = ? AND " + KEY_USER_PASSWORD + " = ?;";
+        String queryString = "SELECT " + KEY_USER_PASSWORD + " FROM " + TABLE_USER + " WHERE " + KEY_USER_LOGIN + " = ?;";
         //get db
         SQLiteDatabase db = com.barseghyan_massa.nsi_prospect.db.helper.UserHelper.db.getReadableDatabase();
         //get data in cursor
-        try (Cursor cursor = db.rawQuery(queryString, new String[]{login, password})) {
 
+        try (Cursor cursor = db.rawQuery(queryString, new String[]{login})) {
             //if cursor has data
             if (cursor.moveToFirst()) {
                 //return User
-                db.close();
-                return true;
+                if (BCrypt.checkpw(password, cursor.getString(0))) {
+                    db.close();
+                    exit = true;
+                } else {
+                    //If no result : message
+                    Toast.makeText(MyApplication.getAppContext(), "Login/Password incorrect !", Toast.LENGTH_SHORT).show();
+                    db.close();
+                }
             } else {
-                //If no result : message
-                Toast.makeText(MyApplication.getAppContext(), "Login/Password incorrect !", Toast.LENGTH_SHORT).show();
                 db.close();
-                return false;
+                Toast.makeText(MyApplication.getAppContext(), "Cet utilisateur n'existe pas !", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             Toast.makeText(MyApplication.getAppContext(), "Query error", Toast.LENGTH_SHORT).show();
             Log.d(USER_LOG, "Error connection: " + e);
             db.close();
-            return false;
         }
+        return exit;
     }
 
     /*  INSERT USER  */

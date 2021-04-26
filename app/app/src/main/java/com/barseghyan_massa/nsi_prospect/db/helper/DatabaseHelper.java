@@ -130,7 +130,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Users
         String hashedAdmin = BCrypt.hashpw("admin", BCrypt.gensalt());
 
-        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('admin',"+ hashedAdmin +")");
+
+
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('admin','" + hashedAdmin + "')");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('alexis','" + BCrypt.hashpw("alexis", BCrypt.gensalt()) + "')");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('achot','" + BCrypt.hashpw("achot", BCrypt.gensalt()) + "')");
         db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('', '')");
 
         //Companies

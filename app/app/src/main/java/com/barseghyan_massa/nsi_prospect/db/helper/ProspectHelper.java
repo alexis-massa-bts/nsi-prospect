@@ -130,26 +130,32 @@ public class ProspectHelper {
 //      Get db
         SQLiteDatabase db = ProspectHelper.db.getWritableDatabase();
 
-//      Where clause
-        String whereQuery = "UPDATE " + TABLE_PROSPECT + " SET "
-                + KEY_PROSPECT_NAME + "= '" + newProspect.getName() + "', "
-                + KEY_PROSPECT_LASTNAME + "= '" + newProspect.getLastname() + "', "
-                + KEY_PROSPECT_PHONE + "= '" + newProspect.getPhone() + "', "
-                + KEY_PROSPECT_MAIL + "= '" + newProspect.getMail() + "', "
-                + KEY_PROSPECT_NOTES + "= '" + newProspect.getNotes() + "', "
-                + " WHERE "
-                + KEY_PROSPECT_NAME + "= '" + oldProspect.getName() + "' AND "
-                + KEY_PROSPECT_LASTNAME + "= '" + oldProspect.getLastname() + "' AND "
-                + KEY_PROSPECT_PHONE + "= " + oldProspect.getPhone() + "' AND "
-                + KEY_PROSPECT_MAIL + "= '" + oldProspect.getMail() + "' AND "
-                + KEY_PROSPECT_NOTES + "= '" + oldProspect.getNotes() + "' AND "
-                + KEY_CREATED_AT + "= '" + oldProspect.getCreatedAt() + "';";
+        //      Values to insert : key - value
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_PROSPECT_NAME, newProspect.getName());
+        cv.put(KEY_PROSPECT_LASTNAME, newProspect.getLastname());
+        cv.put(KEY_PROSPECT_PHONE, newProspect.getPhone());
+        cv.put(KEY_PROSPECT_MAIL, newProspect.getMail());
+        cv.put(KEY_PROSPECT_NOTES, newProspect.getNotes());
+        cv.put(KEY_CREATED_AT, newProspect.getCreatedAt());
 
-        Toast.makeText(MyApplication.getAppContext(), "" + whereQuery, Toast.LENGTH_SHORT).show();
+//      Where clause
+        String whereClause = ""
+                + KEY_PROSPECT_NAME + "= ? AND "
+                + KEY_PROSPECT_LASTNAME + "= ? AND "
+                + KEY_PROSPECT_PHONE + "= ? AND "
+                + KEY_PROSPECT_MAIL + "= ? AND "
+                + KEY_PROSPECT_NOTES + "= ? AND "
+                + KEY_CREATED_AT + "= ? ;";
+
+
+//      Where arguments
+        String[] whereArgs = new String[]{oldProspect.getName(), oldProspect.getLastname(), oldProspect.getPhone(), oldProspect.getMail(), oldProspect.getNotes(), oldProspect.getCreatedAt()};
+
+
 
 //      Query returns long
-        db.execSQL(whereQuery);
-        return true;
-
+        long updated = db.update(TABLE_PROSPECT, cv, whereClause, whereArgs);
+        return updated != -1;
     }
 }
