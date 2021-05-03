@@ -9,8 +9,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.barseghyan_massa.nsi_prospect.R;
-import com.barseghyan_massa.nsi_prospect.fragments.PasswordLostFragment;
-import com.barseghyan_massa.nsi_prospect.fragments.LoginLostFragment;
+import com.barseghyan_massa.nsi_prospect.fragments.AccountLostFragment;
+import com.barseghyan_massa.nsi_prospect.fragments.RecoverLoginFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -32,10 +32,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new LoginLostFragment();
+                fragment = new RecoverLoginFragment();
                 break;
             case 1:
-                fragment = new PasswordLostFragment();
+                fragment = new AccountLostFragment();
                 break;
         }
         return fragment;

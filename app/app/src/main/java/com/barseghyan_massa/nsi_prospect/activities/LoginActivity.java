@@ -43,12 +43,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void connection() {
-        UserHelper userH = new UserHelper();
 
         String login_str = et_login.getText().toString();
         String password_str = et_password.getText().toString();
 
-        if (userH.connection(login_str, password_str)) {
+        if (UserHelper.connection(login_str, password_str)) {
             goToHomepage();
         }
     }

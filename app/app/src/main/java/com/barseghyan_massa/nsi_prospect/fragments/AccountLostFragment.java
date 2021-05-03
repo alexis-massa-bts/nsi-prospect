@@ -22,35 +22,18 @@ import com.barseghyan_massa.nsi_prospect.mail.JavaMailAPI;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PasswordLostFragment extends Fragment {
+public class AccountLostFragment extends Fragment {
 
-    EditText et_mail;
+    EditText et_mail, et_message;
     Button btn_generate;
 
-    public PasswordLostFragment() {
+    public AccountLostFragment() {
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    private void generatePassword(String et_mail) throws Exception {
-        //Creer le mail
-        Toast.makeText(MyApplication.getAppContext(), "Envoi", Toast.LENGTH_SHORT).show();
-
-        String subject = "Nouveau mot de passe !";
-        String message = "Voici votre nouveau mot de passe : 1234";
-
-        JavaMailAPI javaMailAPI = new JavaMailAPI(MyApplication.getAppContext(), et_mail, subject, message);
-        javaMailAPI.execute();
-
-        //Changement dans la BDD
-        User oldUser = UserHelper.findOne(et_mail);
-        User newUser = UserHelper.findOne(et_mail);
-        newUser.setMail(et_mail);
-
     }
 
     @Override
@@ -63,17 +46,35 @@ public class PasswordLostFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        et_mail = getActivity().findViewById(R.id.acc_sett_mail);
-        btn_generate = getActivity().findViewById(R.id.btn_generate);
+        et_mail = getActivity().findViewById(R.id.lost_acc_mail);
+        et_message = getActivity().findViewById(R.id.lost_acc_msg);
+        btn_generate = getActivity().findViewById(R.id.btn_rec_lost_acc);
 
         btn_generate.setOnClickListener(v -> {
             try {
-                generatePassword(et_mail.getText().toString().trim());
+                recoverAccount(et_mail.getText().toString().trim(), et_message.getText().toString().trim());
                 Toast.makeText(MyApplication.getAppContext(), "Success", Toast.LENGTH_SHORT).show();
 
             } catch (Exception e) {
                 Log.d(this.getTag(), e.toString());
             }
         });
+    }
+
+    private void recoverAccount(String et_mail, String et_msg) throws Exception {
+        //Creer le mail
+        Toast.makeText(MyApplication.getAppContext(), "Envoi..", Toast.LENGTH_SHORT).show();
+
+        String subject = "Demande de récupération de compte.";
+
+        try {
+            JavaMailAPI javaMailAPI = new JavaMailAPI(MyApplication.getAppContext(), et_mail, subject, et_msg);
+            javaMailAPI.execute();
+            Toast.makeText(MyApplication.getAppContext(), "Succès!", Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            Log.d("recoverAccount", e.toString());
+            Toast.makeText(MyApplication.getAppContext(), "Erreur lors de l'envoi.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

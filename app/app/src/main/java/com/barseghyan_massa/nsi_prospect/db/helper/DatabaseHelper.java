@@ -128,13 +128,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //HARD CODED IMPORTS
         //Users
-        String hashedAdmin = BCrypt.hashpw("admin", BCrypt.gensalt());
 
-
-
-        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('admin','" + hashedAdmin + "')");
-        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('alexis','" + BCrypt.hashpw("alexis", BCrypt.gensalt()) + "')");
-        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('achot','" + BCrypt.hashpw("achot", BCrypt.gensalt()) + "')");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + "," + KEY_USER_MAIL + ") VALUES('admin','" + BCrypt.hashpw("admin", BCrypt.gensalt()) + "','admin@gmail.com')");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + "," + KEY_USER_MAIL + ") VALUES('alexis','" + BCrypt.hashpw("alexis", BCrypt.gensalt()) + "','alexis@gmail.com')");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + "," + KEY_USER_MAIL + ") VALUES('achot','" + BCrypt.hashpw("achot", BCrypt.gensalt()) + "','achot@gmail.com')");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + "," + KEY_USER_MAIL + ") VALUES('test','test','test@gmail.com')");
         db.execSQL("INSERT INTO " + TABLE_USER + "(" + KEY_USER_LOGIN + "," + KEY_USER_PASSWORD + ") VALUES('', '')");
 
         //Companies

@@ -89,30 +89,35 @@ public class UserHelper {
     /*  FIND ONE USER BY EMAIL */
     public static User findOne(String et_mail) {
         //Query to execute
-        String queryString = "SELECT * FROM " + TABLE_USER + " WHERE " + KEY_USER_MAIL + " = " + et_mail;
+        String queryString = "SELECT * FROM " + TABLE_USER + " WHERE " + KEY_USER_MAIL + " = '" + et_mail + "'";
+
         //get db
         SQLiteDatabase db = com.barseghyan_massa.nsi_prospect.db.helper.UserHelper.db.getReadableDatabase();
         //get data in cursor
         try (Cursor cursor = db.rawQuery(queryString, null)) {
-            db.close();
             //if cursor has data
             if (cursor.moveToFirst()) {
                 //return User
-                return new User(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+                User u = new User(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+                db.close();
+                return u;
             } else {
                 //If no result : message
                 Toast.makeText(MyApplication.getAppContext(), "No user found", Toast.LENGTH_SHORT).show();
+                db.close();
+
                 return null;
             }
         } catch (Exception e) {
             Toast.makeText(MyApplication.getAppContext(), "Query error", Toast.LENGTH_SHORT).show();
             Log.d(USER_LOG, "Error findOne: " + e);
+            db.close();
             return null;
         }
     }
 
     /* CONNECT USER */
-    public boolean connection(String login, String password) {
+    public static boolean connection(String login, String password) {
 
         boolean exit = false;
 
@@ -127,7 +132,6 @@ public class UserHelper {
             if (cursor.moveToFirst()) {
                 //return User
                 if (BCrypt.checkpw(password, cursor.getString(0))) {
-                    db.close();
                     exit = true;
                 } else {
                     //If no result : message
@@ -143,6 +147,7 @@ public class UserHelper {
             Log.d(USER_LOG, "Error connection: " + e);
             db.close();
         }
+        db.close();
         return exit;
     }
 

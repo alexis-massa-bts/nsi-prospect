@@ -25,6 +25,7 @@ public class User {
     public User(String name, String lastname, String password) {
         this.name = name;
         this.lastname = lastname;
+        this.login = name.charAt(0) + lastname;
         this.password = password;
         this.createdAt = new Date(System.currentTimeMillis());
     }
@@ -33,6 +34,7 @@ public class User {
         this.name = name;
         this.lastname = lastname;
         this.password = password;
+        this.login = name.charAt(0) + lastname;
         this.phone = phone;
         this.mail = mail;
         this.createdAt = new Date(System.currentTimeMillis());
@@ -103,6 +105,7 @@ public class User {
         return "User{" +
                 "name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
+                ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
                 ", mail='" + mail + '\'' +
